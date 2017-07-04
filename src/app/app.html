@@ -11,6 +11,12 @@
         {{p.title}}
       </button>
     </ion-list>
+    <div class="menu-title">Espace Client</div>
+    <ion-list>
+      <button [class.activePageHighlight]="checkActive(p)" menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
   </ion-content>
 
 </ion-menu>

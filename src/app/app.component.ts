@@ -12,6 +12,15 @@ import { Reseau } from '../pages/reseau/reseau';
 import { showDataPage } from '../pages/reseau/show';
 import { Contact } from '../pages/contact/contact';
 import { Settings } from '../pages/settings/settings';
+import { Factures } from '../pages/factures/factures';
+import { Echeances } from '../pages/echeances/echeances';
+import { Conso } from '../pages/conso/conso';
+import { Reclamations } from '../pages/reclamations/reclamations';
+import { Devis } from '../pages/devis/devis';
+import { Simulation } from '../pages/simulation/simulation';
+import { Demarches } from '../pages/demarches/demarches';
+import { Profil } from '../pages/profil/profil';
+import { Auth } from '../pages/auth/auth';
 
 import { TranslateService }   from './translate/translate.service';
 
@@ -24,6 +33,7 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  pages2: Array<{title: string, component: any}>;
   activePage: any;
 
 
@@ -39,6 +49,17 @@ export class MyApp {
       { title: 'Réseau', component: Reseau },
       { title: 'Contact', component: Contact },
       { title: 'Paramètre', component: Settings }
+    ];
+    this.pages2 = [
+      { title: 'Mes Factures', component: Factures },
+      { title: 'Echéance', component: Echeances },
+      { title: 'Historique consommation', component: Conso },
+      { title: 'Réclamations', component: Reclamations },
+      { title: 'Devis', component: Devis },
+      { title: 'Simulation', component: Simulation },
+      { title: "Vos démarches(conditions d'utilisations)", component: Demarches },
+      { title: 'Mon profil', component: Profil },
+      { title: 'Connexion', component: Auth }
     ];
     this.activePage = this.pages[0];
   }

@@ -18,3 +18,10 @@
 .activePageHighlight {
 	background-color: map-get($colors, light);
 }
+
+.menu-title{
+  float: left;
+  font-size: 13pt;
+  padding: 0 0 28px 18px;
+  font-weight: bold;
+}
