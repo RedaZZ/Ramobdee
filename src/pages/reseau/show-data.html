@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{kind}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf=" kind == 'Agence'">
+    <div class="map-container">
+      <div #map id="map"></div>
+    </div>
+    <ion-card>
+      <ion-fab right top>
+        <button ion-fab (click)="addMarker()">
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-item>
+        <ion-icon name="navigate" item-start large></ion-icon>
+        <h2>{{name}}</h2>
+        <p>{{tel}}</p>
+      </ion-item>
+    </ion-card>
+  </div>
+  <div *ngIf=" kind !== 'Agence'">
+    <div class="map-container">
+      <div #map id="map"></div>
+    </div>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="navigate" item-start large></ion-icon>
+        <h2>{{name}}</h2>
+        <p>{{adress}}</p>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>

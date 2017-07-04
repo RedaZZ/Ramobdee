@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>News</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <img src="{{publicUrl}}"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{createdAt  | date: 'dd/MM/yyyy h:mm'}}
+      </ion-card-title>
+      <p>
+        {{message}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

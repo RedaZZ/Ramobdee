@@ -1,0 +1,84 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Reseau</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="reseau">
+    <ion-segment-button value="agence">
+      Agences
+    </ion-segment-button>
+    <ion-segment-button value="espace">
+      Espaces services
+    </ion-segment-button>
+    <ion-segment-button value="gab">
+      Gab
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="reseau">
+    <ion-list padding *ngSwitchCase="'agence'">
+      <ion-searchbar (input)="searchAgence($event)"></ion-searchbar>
+      <button ion-item (click)='showData(agence, "Agence")' *ngFor=" let agence of agences ">
+        <ion-avatar item-start>
+          <img src="assets/images/radeema_logo.jpg">
+        </ion-avatar>
+        <h2>{{agence.name}}</h2>
+        <h3>{{agence.adress}}</h3>
+        <p>{{agence.tel}}</p>
+      </button>
+    </ion-list>
+
+    <ion-list padding *ngSwitchCase="'espace'">
+      <ion-segment [(ngModel)]="espace">
+        <ion-segment-button value="tashilat">
+          Tasshilat
+        </ion-segment-button>
+        <ion-segment-button value="fawatir">
+          Fawatir
+        </ion-segment-button>
+      </ion-segment>
+      <div [ngSwitch]="espace">
+        <div *ngSwitchCase="'tashilat'">
+        <ion-searchbar (input)="searchEspace($event)"></ion-searchbar>
+          <button ion-item (click)='showData(tashilat, "Tasshilat")' *ngFor=" let tashilat of tashilats ">
+            <ion-avatar item-start>
+              <img src="assets/images/tasshilat.png">
+            </ion-avatar>
+            <h2>{{tashilat.name}}</h2>
+            <h3>{{tashilat.adress}}</h3>
+          </button>
+        </div>
+        <div *ngSwitchCase="'fawatir'">
+        <ion-searchbar (input)="searchFawatir($event)"></ion-searchbar>
+          <button ion-item (click)='showData(fawatir, "Fawatir")' *ngFor=" let fawatir of fawatirs ">
+            <ion-avatar item-start>
+              <img src="assets/images/fawatir.png">
+            </ion-avatar>
+            <h2>{{fawatir.name}}</h2>
+            <h3>{{fawatir.adress}}</h3>
+          </button>
+        </div>
+      </div>
+    </ion-list>
+
+    <ion-list padding *ngSwitchCase="'gab'">
+      <ion-searchbar (input)="searchGab($event)"></ion-searchbar>
+      <button ion-item (click)='showData(gab, "Gab")' *ngFor=" let gab of gabs ">
+        <ion-avatar item-start>
+          <img src="assets/images/gab.jpg">
+        </ion-avatar>
+        <h2>{{gab.name}}</h2>
+        <h3>{{gab.adress}}</h3>
+      </button>
+    </ion-list>
+  </div>
+
+</ion-content>

@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mes factures</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+     Bienvenue {{factures.customerName}}
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+  <ion-item-divider>N contrat : {{contract}}</ion-item-divider>
+  <ion-list-header>
+    <ion-label>
+      Tout cocher
+    </ion-label>
+    <ion-checkbox color="dark" disabled="false" item-end checked="false" (ionChange)="checkAll($event)"></ion-checkbox>
+  </ion-list-header>
+    <ion-item text-wrap *ngFor=" let facture of factures.invoices">
+      <ion-thumbnail item-start>
+        <img src="assets/images/elec-icon.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>N Facture : {{facture.numFacture}}</h2>
+        <h3>Montant : {{facture.montantTTC}} DH</h3>
+        <p>Date Facture : {{facture.dateFacture}} </p>
+      </ion-label>
+      <ion-checkbox  [checked]="facture.checked"  (ionChange)="getValue(facture)" color="dark" disabled="false" item-end></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <div padding>
+    <h3>
+      Montant total à payer : 68.25 DH
+    </h3>
+    <ion-item>
+     <ion-input type="email" placeholder="Email"></ion-input>
+     <button item-right ion-button center text-cente default>Payer</button>
+    </ion-item>
+  </div>
+</ion-footer>

@@ -1,0 +1,64 @@
+page-home {
+	.slides-container{
+		height: 250px;
+		margin-bottom: 6px;
+	}
+	 ion-slide img {
+    /*height: 70vh !important;*/
+    width: auto !important;
+  }
+  .choice{
+	  ion-label{
+	  	font-size: 2.6rem !important;
+	  }
+
+		ion-icon::before {
+			font-size: 38px;
+		}
+
+		.item{
+			.item-inner{
+				border-bottom: 0!important;
+				background: none !important;
+				padding-right: 0 !important;
+			}
+			&:first-child{
+				border-bottom: 0.55px solid #c8c7cc;
+	    	line-height: 72px;
+			}
+			&:last-child{
+				padding-top:24px;
+				padding-bottom: 14px;
+			}
+		}
+  }
+
+	.text-center{
+		width: 100%;
+		left:0;
+		text-align: center;
+		position: absolute;
+		float: left;
+    button{
+    	margin: 0 auto;
+    }
+	}
+
+	.card{
+    margin-top: 60px;
+    float: left;
+	}
+
+	.width100{
+		width:100%;
+	}
+
+	.link-login{
+		float: left;
+		width: 100%;
+		margin-bottom: 8px;
+		text-align: right;
+	}
+
+
+}
