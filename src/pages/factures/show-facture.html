@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Détails facture</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item text-wrap>
+    <div class="one-line">
+      <div class="left-side">Numéro</div>
+      <div class="right-side"> {{number}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Période</div>
+      <div class="right-side"> {{period}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Montant</div>
+      <div class="right-side"> {{amount}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Date d'exigibilité</div>
+      <div class="right-side"> {{dueDate}} </div>
+    </div>
+  </ion-item>
+  <div class="details-section">
+    <div class="one-line">
+      <div class="left-side">Type de facture</div>
+      <div class="right-side"> {{typeFacture}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Solde</div>
+      <div class="right-side"> {{solde}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Montant réglé</div>
+      <div class="right-side"> {{amountDone}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Type réglement</div>
+      <div class="right-side"> {{regulationType}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Mode de réglement</div>
+      <div class="right-side"> {{regulationMode}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Date de réglement</div>
+      <div class="right-side"> {{regulationDate}} </div>
+    </div>
+  </div>
+</ion-content>

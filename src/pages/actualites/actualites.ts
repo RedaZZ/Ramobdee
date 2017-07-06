@@ -51,6 +51,7 @@ export class ActualitesPage {
     });
   }
 
+/* show video page */
   showVideos(video){
     this.navCtrl.push(showVideosPage, {
       imageUrl: video.snippet.thumbnails.default.url,

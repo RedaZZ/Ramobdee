@@ -1,3 +1,47 @@
 page-factures {
+  .top-item{
+    padding-bottom:20px;
+  }
+  .one-line{
+    float:left;
+    display: inline-block;
+    width: 100%;
+    font-size: 14pt;
+    .left-side{
+      float:left;
+      width:50%;
+    }
+    .right-side{
+      width:50%;
+      float:left;
+      font-weight: bold;
+    }
+  }
+}
 
+page-show-facture{
+  .top-item{
+    padding-bottom:20px;
+  }
+  ion-item{
+    padding-left: 0 !important;
+  }
+  .one-line{
+    float:left;
+    display: inline-block;
+    width: 100%;
+    font-size: 14pt;
+    .left-side{
+      float:left;
+      width:50%;
+    }
+    .right-side{
+      width:50%;
+      float:left;
+      font-weight: bold;
+    }
+  }
+  .details-section{
+    margin-top: 10px;
+  }
 }

@@ -16,6 +16,16 @@ import { Reseau } from '../pages/reseau/reseau';
 import { showDataPage } from '../pages/reseau/show';
 import { Contact } from '../pages/contact/contact';
 import { Settings } from '../pages/settings/settings';
+import { Factures } from '../pages/factures/factures';
+import { showFacturePage } from '../pages/factures/show-facture';
+import { Echeances } from '../pages/echeances/echeances';
+import { Conso } from '../pages/conso/conso';
+import { Reclamations } from '../pages/reclamations/reclamations';
+import { Devis } from '../pages/devis/devis';
+import { Simulation } from '../pages/simulation/simulation';
+import { Demarches } from '../pages/demarches/demarches';
+import { Profil } from '../pages/profil/profil';
+import { Auth } from '../pages/auth/auth';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,6 +47,16 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Contact,
     showDataPage,
     Settings,
+    Factures,
+    showFacturePage,
+    Echeances,
+    Conso,
+    Reclamations,
+    Devis,
+    Simulation,
+    Demarches,
+    Profil,
+    Auth,
     TranslatePipe
   ],
   imports: [
@@ -56,7 +76,17 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Reseau,
     Contact,
     showDataPage,
-    Settings
+    Settings,
+    Factures,
+    showFacturePage,
+    Echeances,
+    Conso,
+    Reclamations,
+    Devis,
+    Simulation,
+    Demarches,
+    Profil,
+    Auth,
   ],
   providers: [
     StatusBar,
