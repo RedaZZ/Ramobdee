@@ -10,12 +10,38 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>devis</ion-title>
+    <ion-title>Devis</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-item class="top-item">
+    <ion-label floating>Type Contrat</ion-label>
+    <ion-select [(ngModel)]="devis.objet" name="object">
+      <ion-option value="544870">544870-Eau</ion-option>
+      <ion-option value="544272">544272-Electricité</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item text-wrap *ngFor=" let devis of deviss" >
+    <ion-label>
+      <div class="one-line">
+        <div class="left-side">N° </div>
+        <div class="right-side"> {{devis.numero}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Date</div>
+        <div class="right-side"> {{devis.date}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Montant TTC</div>
+        <div class="right-side"> {{devis.amount}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Commentaire</div>
+        <div class="right-side"> {{devis.comment}} </div>
+      </div>
+    </ion-label>
+  </ion-item>
 </ion-content>

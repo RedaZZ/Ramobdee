@@ -9,16 +9,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 @IonicPage()
 @Component({
-  selector: 'page-demarches',
-  templateUrl: 'demarches.html',
+  selector: 'page-domiciliation',
+  templateUrl: 'domiciliation.html',
 })
-export class Demarches {
+export class Domiciliation {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Demarches');
+    console.log('ionViewDidLoad Domiciliation');
   }
 
 }

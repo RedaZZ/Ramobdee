@@ -10,12 +10,56 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>conso</ion-title>
+    <ion-title>Ma conso</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-item class="top-item">
+    <ion-label floating>Type Contrat</ion-label>
+    <ion-select [(ngModel)]="conso.objet" name="object">
+      <ion-option value="544870">544870-Eau</ion-option>
+      <ion-option value="544272">544272-Electricité</ion-option>
+    </ion-select>
+  </ion-item>
+  <div *ngFor=" let conso of consos; let i=index " (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" class="conso-itm">
+    <button ion-item text-wrap >
+      <ion-label>
+        <div class="one-line">
+          <div class="left-side">Index</div>
+          <div class="right-side"> {{conso.index}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Période</div>
+          <div class="right-side"> {{conso.period}} </div>
+        </div>
+      </ion-label>
+    </button>
+      <ion-card *ngIf="isGroupShown(i)">
+        <ion-card-content>
+          <div class="one-line">
+            <div class="left-side">Date de la relève</div>
+            <div class="right-side"> {{conso.dateReleve}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side">Type relève</div>
+            <div class="right-side"> {{conso.typeLecture}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side">Nombre de jours</div>
+            <div class="right-side"> {{conso.nombreJour}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side">Volume consommé</div>
+            <div class="right-side"> {{conso.volumeConsom}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side">Volume facturé</div>
+            <div class="right-side"> {{conso.volumeFacture}} </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+  </div>
 </ion-content>

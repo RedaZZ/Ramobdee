@@ -14,11 +14,12 @@ import { Contact } from '../pages/contact/contact';
 import { Settings } from '../pages/settings/settings';
 import { Factures } from '../pages/factures/factures';
 import { Echeances } from '../pages/echeances/echeances';
+import { showEcheancePage} from '../pages/echeances/show-echeance';
 import { Conso } from '../pages/conso/conso';
 import { Reclamations } from '../pages/reclamations/reclamations';
 import { Devis } from '../pages/devis/devis';
 import { Simulation } from '../pages/simulation/simulation';
-import { Demarches } from '../pages/demarches/demarches';
+import { Domiciliation } from '../pages/domiciliation/domiciliation';
 import { Profil } from '../pages/profil/profil';
 import { Auth } from '../pages/auth/auth';
 
@@ -57,7 +58,7 @@ export class MyApp {
       { title: 'Réclamations', component: Reclamations },
       { title: 'Devis', component: Devis },
       { title: 'Simulation', component: Simulation },
-      { title: "Vos démarches(conditions d'utilisations)", component: Demarches },
+      { title: "Domiciliation Bancaire", component: Domiciliation },
       { title: 'Mon profil', component: Profil },
       { title: 'Connexion', component: Auth }
     ];

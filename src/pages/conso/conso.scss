@@ -1,3 +1,35 @@
 page-conso {
+  .top-item{
+    padding-bottom:20px;
+  }
+  .one-line{
+    float:left;
+    display: inline-block;
+    width: 100%;
+    font-size: 14pt;
+    .left-side{
+      float:left;
+      width:50%;
+    }
+    .right-side{
+      width:50%;
+      float:left;
+      font-weight: bold;
+    }
+  }
 
+  .conso-itm .item-inner{
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' transform='rotate(90 5 10)'/></svg>") !important ;
+    background-size: 18px 18px !important;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  .conso-itm.active .item-inner{
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' transform='rotate(270 5 10)'/></svg>") !important ;
+    background-size: 18px 18px !important;
+    background-repeat: no-repeat;
+    background-position: right;
+
+  }
 }
+

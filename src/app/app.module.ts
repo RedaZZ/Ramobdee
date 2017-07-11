@@ -19,11 +19,12 @@ import { Settings } from '../pages/settings/settings';
 import { Factures } from '../pages/factures/factures';
 import { showFacturePage } from '../pages/factures/show-facture';
 import { Echeances } from '../pages/echeances/echeances';
+import { showEcheancePage} from '../pages/echeances/show-echeance';
 import { Conso } from '../pages/conso/conso';
 import { Reclamations } from '../pages/reclamations/reclamations';
 import { Devis } from '../pages/devis/devis';
 import { Simulation } from '../pages/simulation/simulation';
-import { Demarches } from '../pages/demarches/demarches';
+import { Domiciliation } from '../pages/domiciliation/domiciliation';
 import { Profil } from '../pages/profil/profil';
 import { Auth } from '../pages/auth/auth';
 
@@ -50,11 +51,12 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Factures,
     showFacturePage,
     Echeances,
+    showEcheancePage,
     Conso,
     Reclamations,
     Devis,
     Simulation,
-    Demarches,
+    Domiciliation,
     Profil,
     Auth,
     TranslatePipe
@@ -80,13 +82,12 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Factures,
     showFacturePage,
     Echeances,
+    showEcheancePage,
     Conso,
     Reclamations,
     Devis,
     Simulation,
-    Demarches,
-    Profil,
-    Auth,
+    Domiciliation
   ],
   providers: [
     StatusBar,
