@@ -10,12 +10,25 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>simulation</ion-title>
+    <ion-title>Simulation de mes factures</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-item>
+    <ion-label floating>Type Contrat</ion-label>
+    <ion-select [(ngModel)]="simulation.objet" name="object">
+      <ion-option value="544870">544870-Eau</ion-option>
+      <ion-option value="544272">544272-Electricité</ion-option>
+    </ion-select>
+  </ion-item>
+  <form (ngSubmit)="simulate()">
+    <ion-item>
+      <ion-label floating>Volume</ion-label>
+      <ion-input type="number" [(ngModel)]="simulation.volume" name="volume"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block class="btn-margin">Simuler</button>
+  </form>
 </ion-content>

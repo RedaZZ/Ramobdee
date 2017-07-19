@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { resultsPage} from '../simulation/resultats';
 
-/**
- * Generated class for the Simulation page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
   selector: 'page-simulation',
   templateUrl: 'simulation.html',
 })
 export class Simulation {
+  simulation = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  simulate(){
+    console.log(this.simulation);
+    this.navCtrl.push(resultsPage, {
+    });
   }
 
   ionViewDidLoad() {

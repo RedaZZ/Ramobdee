@@ -1,3 +1,21 @@
 page-reclamations {
-
+  .top-item{
+    padding-bottom:20px;
+  }
+  .one-line{
+    float:left;
+    display: inline-block;
+    width: 100%;
+    font-size: 14pt;
+    .left-side{
+      float:left;
+      width:50%;
+    }
+    .right-side{
+      width:50%;
+      float:left;
+      font-weight: bold;
+      white-space: normal;
+    }
+  }
 }

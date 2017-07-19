@@ -24,6 +24,7 @@ import { Conso } from '../pages/conso/conso';
 import { Reclamations } from '../pages/reclamations/reclamations';
 import { Devis } from '../pages/devis/devis';
 import { Simulation } from '../pages/simulation/simulation';
+import { resultsPage} from '../pages/simulation/resultats';
 import { Domiciliation } from '../pages/domiciliation/domiciliation';
 import { Profil } from '../pages/profil/profil';
 import { Auth } from '../pages/auth/auth';
@@ -56,6 +57,7 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Reclamations,
     Devis,
     Simulation,
+    resultsPage,
     Domiciliation,
     Profil,
     Auth,
@@ -87,6 +89,7 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Reclamations,
     Devis,
     Simulation,
+    resultsPage,
     Domiciliation
   ],
   providers: [

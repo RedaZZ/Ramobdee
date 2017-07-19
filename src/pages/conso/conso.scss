@@ -15,6 +15,7 @@ page-conso {
       width:50%;
       float:left;
       font-weight: bold;
+      white-space: normal;
     }
   }
 
@@ -28,8 +29,6 @@ page-conso {
     background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' transform='rotate(270 5 10)'/></svg>") !important ;
     background-size: 18px 18px !important;
     background-repeat: no-repeat;
-    background-position: right;
-
   }
 }
 

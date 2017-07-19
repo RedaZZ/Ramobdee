@@ -10,12 +10,63 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>reclamations</ion-title>
+    <ion-title>Reclamations</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-item class="top-item">
+    <ion-label floating>Type Contrat</ion-label>
+    <ion-select [(ngModel)]="reclamation.objet" name="object">
+      <ion-option value="544870">544870-Eau</ion-option>
+      <ion-option value="544272">544272-Electricité</ion-option>
+    </ion-select>
+  </ion-item>
+  <button ion-button type="button" block class="btn-margin">Soumettre réclamation</button>
+  <ion-item>
+    <div class="one-line">
+      <div class="left-side">N° Réclamation</div>
+      <div class="right-side"> 909588 </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Date Réclamation</div>
+      <div class="right-side"> 11/07/2017 12:40 </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Etat Réclamation</div>
+      <div class="right-side"> En cours </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Type Réclamation</div>
+      <div class="right-side"> Demande une information sur la procédure d'abonnement </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Commentaire</div>
+      <div class="right-side"> Tel 065854221</div>
+    </div>
+  </ion-item>
+  <ion-item>
+    <div class="one-line">
+      <div class="left-side">N° Réclamation</div>
+      <div class="right-side"> 909588 </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Date Réclamation</div>
+      <div class="right-side"> 05/02/2017 12:40 </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Etat Réclamation</div>
+      <div class="right-side"> Cloturé </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Type Réclamation</div>
+      <div class="right-side"> Demande une information sur la procédure d'abonnement </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">Commentaire</div>
+      <div class="right-side"> Tel 065854221</div>
+    </div>
+  </ion-item>
 </ion-content>
