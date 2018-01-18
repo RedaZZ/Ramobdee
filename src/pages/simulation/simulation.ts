@@ -10,6 +10,7 @@ import { resultsPage} from '../simulation/resultats';
 })
 export class Simulation {
   simulation = {};
+  active = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

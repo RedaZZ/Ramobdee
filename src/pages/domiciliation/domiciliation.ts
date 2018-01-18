@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, ModalController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
-
+import { AlertPage } from '../domiciliation/alert';
 
 @IonicPage()
 @Component({
@@ -15,27 +15,38 @@ export class Domiciliation {
   account = {};
   submitted = false;
   active = true;
+  steps: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+    this.steps = "step1"
   }
 
   formBank() {
-     this.submitted = true;
-     console.log(this.account);
+    this.submitted = true;
+    console.log(this.account);
   }
 
-  goForward() {
+  goForward(num) {
     this.slides.lockSwipes(false);
     this.slides.slideTo(2, 100);
     this.slides.lockSwipes(true);
     console.log(this.account);
+    this.steps = "step"+num
   }
 
-  getBack() {
+  getBack(num) {
     this.slides.lockSwipes(false);
     this.slides.slidePrev(100);
     this.slides.lockSwipes(true);
     console.log(this.account);
+    this.steps = "step"+num
+  }
+
+  openModal(e:any) {
+    if (e.checked) {
+      let myModal = this.modalCtrl.create(AlertPage);
+      myModal.present();
+    }
   }
 
   ionViewDidLoad() {

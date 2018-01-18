@@ -24,11 +24,11 @@
       <ion-option value="544272">544272-Electricité</ion-option>
     </ion-select>
   </ion-item>
-  <form (ngSubmit)="simulate()">
+  <form #simulForm="ngForm"  (ngSubmit)="simulate()"  *ngIf="active" >
     <ion-item>
       <ion-label floating>Volume</ion-label>
-      <ion-input type="number" [(ngModel)]="simulation.volume" name="volume"></ion-input>
+      <ion-input type="number" [(ngModel)]="simulation.volume" name="volume" class="form-control" required #name="ngModel" ></ion-input>
     </ion-item>
-    <button ion-button type="submit" block class="btn-margin">Simuler</button>
+    <button ion-button type="submit" block class="btn-margin" [disabled]="!simulForm.form.valid">Simuler</button>
   </form>
 </ion-content>

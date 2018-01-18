@@ -10,4 +10,18 @@ page-domiciliation{
   .swiper-slide{
     padding: 0 1px;
   }
+
+  ion-slides {
+    height: auto !important;
+  }
+  .slide-zoom{
+    height:100%;
+    overflow-y: auto;
+  }
+}
+
+page-alert{
+  .card-content li, .card-header {
+    font-size: 13pt;
+  }
 }

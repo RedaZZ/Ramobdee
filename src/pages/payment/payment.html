@@ -4,7 +4,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Mes factures</ion-title>
+    <ion-title>Paiement</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
 <ion-content padding>
   <ion-card>
     <ion-card-content>
-     Bienvenue {{factures.customerName}}
+     Bienvenue {{customerName}}
     </ion-card-content>
   </ion-card>
   <ion-list>
@@ -21,7 +21,7 @@
     <ion-label>
       Tout cocher
     </ion-label>
-    <ion-checkbox color="dark" disabled="false" item-end checked="false" (ionChange)="checkAll($event)"></ion-checkbox>
+    <ion-checkbox color="dark" disabled="false" item-end (ionChange)="checkAll($event)" #allCheckbox></ion-checkbox>
   </ion-list-header>
     <ion-item text-wrap *ngFor=" let facture of factures.invoices">
       <ion-thumbnail item-start>
@@ -32,14 +32,14 @@
         <h3>Montant : {{facture.montantTTC}} DH</h3>
         <p>Date Facture : {{facture.dateFacture}} </p>
       </ion-label>
-      <ion-checkbox  [checked]="facture.checked"  (ionChange)="getValue(facture)" color="dark" disabled="false" item-end></ion-checkbox>
+      <ion-checkbox  [checked]="facture.checked" (ionChange)="getValue(facture, $event)" color="dark" disabled="false" item-end></ion-checkbox>
     </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer>
   <div padding>
     <h3>
-      Montant total à payer : 68.25 DH
+      Montant total à payer : {{totalTTC}} DH
     </h3>
     <ion-item>
      <ion-input type="email" placeholder="Email"></ion-input>

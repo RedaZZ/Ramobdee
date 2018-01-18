@@ -1,1 +1,2 @@
-"# Rad&Me" 
+"# Rad&Me"
+ ionic serve

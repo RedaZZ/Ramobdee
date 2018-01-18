@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/filter';
@@ -16,21 +16,27 @@ import 'rxjs/add/operator/catch';
 export class Payment {
   factures: any;
   contract: any;
+  customerName: any;
+  totalTTC: any;
 
-  constructor( private http: Http, public navCtrl: NavController) {
+  @ViewChild('allCheckbox') allCheckbox ;
+
+  constructor( private http: Http,  public navParams: NavParams, public navCtrl: NavController) {
     this.factures = this.retrievefactures();
-    this.contract = "156840";
+    this.contract = navParams.get("contract");
   }
 
   getfactures() {
-    return this.http.get('libresources/test.json').map((res:Response) => res.json());
+    return this.http.get('http://www.fatourati.ma/RM-Rest/rest/rm/customerInvoices/'+this.navParams.get("contract")).map((res:Response) => res.json());
   }
 
   retrievefactures() {
     return this.getfactures().subscribe((response) => {
         console.log("response");
         console.log(response);
-        this.factures = response[0];
+        this.factures = response;
+        this.customerName = response.customerName;
+        this.totalTTC = this.getTotal(response.invoices);
       }, (error) => {
         console.log("error");
         console.log(error);
@@ -51,7 +57,24 @@ export class Payment {
     })
   }
 
-  getValue(facture) {
+  getValue(facture, e:any) {
+    if (e.checked) {
+      console.log("checked");
+      this.totalTTC = facture.montantTTC;
+    } else {
+      console.log("not checked");
+      this.allCheckbox.checked  = false;
+    }
+
     console.log(facture);
+  }
+
+  getTotal(invoices) {
+    var sum = 0;
+    invoices.forEach(function(invoice) {
+      var total = Number(invoice.montantTTC);
+      sum += total;
+    });
+    return sum.toFixed(2);
   }
 }

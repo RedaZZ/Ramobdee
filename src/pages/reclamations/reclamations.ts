@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { FormPage } from '../reclamations/new_reclamation';
+
 
 
 @IonicPage()
@@ -10,7 +12,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class Reclamations {
 
   reclamation = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public modalCtrl: ModalController) {
+  }
+
+   openModal() {
+    let myModal = this.modalCtrl.create(FormPage);
+    myModal.present();
   }
 
   ionViewDidLoad() {

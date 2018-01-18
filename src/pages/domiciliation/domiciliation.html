@@ -5,90 +5,99 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Domiciliation bancaire</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-segment [(ngModel)]="steps">
+    <ion-segment-button disabled="true" value="step1">
+      Etape 1
+    </ion-segment-button>
+    <ion-segment-button disabled="true" value="step2">
+      Etape 2
+    </ion-segment-button>
+  </ion-segment>
   <ion-slides >
-      <ion-slide>
-        <form #userForm="ngForm"  *ngIf="active" >
-          <ion-item>
-            <ion-label floating>Je sousigné (Nom Complet) * </ion-label>
-            <ion-input type="text" [(ngModel)]="account.complete_name" name="complete_name" class="form-control" required #name="ngModel" ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>Pièce d'identité * </ion-label>
-            <ion-input type="text" [(ngModel)]="account.cin" name="cin" class="form-control" required #name="ngModel"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>Adresse de correspondance * </ion-label>
-            <ion-textarea [(ngModel)]="account.adress" name="adress" class="form-control" required #name="ngModel"></ion-textarea>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>Numéro de téléphone </ion-label>
-            <ion-input type="text" [(ngModel)]="account.tel" name="tel"></ion-input>
-          </ion-item>
-          <button ion-button type="button" class="btn-margin" block (click)="goForward()" [disabled]="!userForm.form.valid">Suivant</button>
-        </form>
-      </ion-slide>
-      <ion-slide >
-        <form #bankForm="ngForm"  *ngIf="active"  (ngSubmit)="formBank()">
-          <ion-item>
-            <ion-label floating>Nom de la banque * </ion-label>
-            <ion-select [(ngModel)]="account.bank_name" name="bank_name" class="form-control" required #name="ngModel">
-              <ion-option value="01" selected="selected">BMCE</ion-option>
-              <ion-option value="02">BANQUE POPULAIRE</ion-option>
-              <ion-option value="03">ATTIJARI WAFA BANQUE</ion-option>
-              <ion-option value="04">SGMB</ion-option>
-              <ion-option value="05">CREDIT AGRICOL</ion-option>
-              <ion-option value="06">CREDIT DU MAROC</ion-option>
-              <ion-option value="07">BMCI</ion-option>
-              <ion-option value="08">TRESORERIE GENERALE</ion-option>
-              <ion-option value="09">CHEQUES POSTAUX</ion-option>
-              <ion-option value="10">ARABE BANQUE</ion-option>
-              <ion-option value="11">CIH</ion-option>
-              <ion-option value="13">CAISSE DEPOT ET GESTION</ion-option>
-              <ion-option value="14">BANQUE DE MAROC</ion-option>
-              <ion-option value="16">UNION MAROCAINE DE BANQUE</ion-option>
-              <ion-option value="17">BARID BANK</ion-option>
-              <ion-option value="19">CFG BANK</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>Votre Agence </ion-label>
-            <ion-input type="text" [(ngModel)]="account.agence" name ="agence"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>N° de compte bancaire *</ion-label>
-            <ion-textarea [(ngModel)]="account.number_account" name="number_account"
-            class="form-control" required #name="ngModel">
-            </ion-textarea>
-          </ion-item>
-          <ion-item class="check">
-            <ion-label>Je demande à la RADEEMA de procéder au réglement de mes
-            factures d'Eau et d'Electricité par prélevement bancaire.
-            </ion-label>
-            <ion-checkbox color="dark" checked="false" [(ngModel)]="account.accept"
-              name="accept" class="form-control" required #name="ngModel">
-            </ion-checkbox>
-          </ion-item>
-          <ion-card>
-            <ion-card-content>
-            * : Champ obligatoire
-            </ion-card-content>
-          </ion-card>
-            <button ion-button type="button" block class="btn-margin" (click)="getBack()">Précedent</button>
+    <div [ngSwitch]="steps">
+      <div *ngSwitchCase="'step1'">
+        <ion-slide>
+          <form #userForm="ngForm"  *ngIf="active" >
+            <ion-item>
+              <ion-label floating>Je sousigné (Nom Complet) * </ion-label>
+              <ion-input type="text" [(ngModel)]="account.complete_name" name="complete_name" class="form-control" required #name="ngModel" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Pièce d'identité * </ion-label>
+              <ion-input type="text" [(ngModel)]="account.cin" name="cin" class="form-control" required #name="ngModel"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Adresse de correspondance * </ion-label>
+              <ion-textarea [(ngModel)]="account.adress" name="adress" class="form-control" required #name="ngModel"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Numéro de téléphone </ion-label>
+              <ion-input type="tel" [(ngModel)]="account.tel" name="tel"></ion-input>
+            </ion-item>
+            <button ion-button type="button" class="btn-margin" block (click)="goForward(2)" [disabled]="!userForm.form.valid">Suivant</button>
+          </form>
+        </ion-slide>
+      </div>
+      <div *ngSwitchCase="'step2'">
+        <ion-slide >
+          <form #bankForm="ngForm"  *ngIf="active"  (ngSubmit)="formBank()">
+            <ion-item>
+              <ion-label floating>Nom de la banque * </ion-label>
+              <ion-select [(ngModel)]="account.bank_name" name="bank_name" class="form-control" required #name="ngModel">
+                <ion-option value="01" selected="selected">BMCE</ion-option>
+                <ion-option value="02">BANQUE POPULAIRE</ion-option>
+                <ion-option value="03">ATTIJARI WAFA BANQUE</ion-option>
+                <ion-option value="04">SGMB</ion-option>
+                <ion-option value="05">CREDIT AGRICOL</ion-option>
+                <ion-option value="06">CREDIT DU MAROC</ion-option>
+                <ion-option value="07">BMCI</ion-option>
+                <ion-option value="08">TRESORERIE GENERALE</ion-option>
+                <ion-option value="09">CHEQUES POSTAUX</ion-option>
+                <ion-option value="10">ARABE BANQUE</ion-option>
+                <ion-option value="11">CIH</ion-option>
+                <ion-option value="13">CAISSE DEPOT ET GESTION</ion-option>
+                <ion-option value="14">BANQUE DE MAROC</ion-option>
+                <ion-option value="16">UNION MAROCAINE DE BANQUE</ion-option>
+                <ion-option value="17">BARID BANK</ion-option>
+                <ion-option value="19">CFG BANK</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Votre Agence </ion-label>
+              <ion-input type="text" [(ngModel)]="account.agence" name ="agence"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>N° de compte bancaire *</ion-label>
+              <ion-input type="number" [(ngModel)]="account.number_account" name="number_account"
+              class="form-control" required #name="ngModel"></ion-input>
+            </ion-item>
+            <ion-item class="check">
+              <ion-label>Je demande à la RADEEMA de procéder au réglement de mes
+              factures d'Eau et d'Electricité par prélevement bancaire.
+              </ion-label>
+              <ion-checkbox color="dark" checked="false" [(ngModel)]="account.accept"
+                name="accept" class="form-control" required #name="ngModel" (ionChange)="openModal($event)">
+              </ion-checkbox>
+            </ion-item>
+            <ion-card>
+              <ion-card-content>
+              * : Champ obligatoire
+              </ion-card-content>
+            </ion-card>
+            <button ion-button type="button" block class="btn-margin" (click)="getBack(1)">Précedent</button>
             <button ion-button type="submit" block class="" [disabled]="!bankForm.form.valid">Valider</button>
-        </form>
-      </ion-slide>
-
+          </form>
+        </ion-slide>
+      </div>
+    </div>
   </ion-slides>
 </ion-content>

@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TranslateService }   from '../../app/translate/translate.service';
 
-/**
- * Generated class for the Settings page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
   selector: 'page-settings',
@@ -15,6 +10,8 @@ import { TranslateService }   from '../../app/translate/translate.service';
 })
 export class Settings {
   language:any;
+  active=true;
+
   public translatedText: string;
   public supportedLanguages: any[];
 /*  currentLang: string;*/
@@ -31,7 +28,7 @@ export class Settings {
 
   changeLang(){
     localStorage.setItem('appLang', this.language);
-    location.reload(true);
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   ionViewDidLoad() {

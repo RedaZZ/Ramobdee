@@ -1,0 +1,189 @@
+<!--
+  Generated template for the Abonnement page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Demande Abonnement</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="steps">
+    <ion-segment-button disabled="true" value="step1">
+      Etape 1
+    </ion-segment-button>
+    <ion-segment-button disabled="true" value="step2">
+      Etape 2
+    </ion-segment-button>
+    <ion-segment-button disabled="true" value="step3">
+      Etape 3
+    </ion-segment-button>
+    <ion-segment-button disabled="true" value="step4">
+      Etape 4
+    </ion-segment-button>
+  </ion-segment>
+  <ion-slides >
+    <div [ngSwitch]="steps">
+      <div *ngSwitchCase="'step1'">
+        <ion-slide>
+          <form #tourneForm="ngForm"  *ngIf="active" >
+            <ion-item>
+              <ion-label floating>Tournée </ion-label>
+              <ion-input type="number" [(ngModel)]="abonnement.tourne" name="tourne" class="form-control" required #name="ngModel" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Service</ion-label>
+              <ion-select [(ngModel)]="abonnement.service" name="service" class="form-control" required #name="ngModel">
+                <ion-option value="EAU" selected="selected">Eau</ion-option>
+                <ion-option value="ELECTRICITE">Electricité</ion-option>
+                <ion-option value="EAUELECTRICITE">Eau & Electricité</ion-option>
+              </ion-select>
+            </ion-item>
+            <button ion-button type="button" class="btn-margin" block (click)="goForward(2)" [disabled]="!tourneForm.form.valid">Suivant</button>
+          </form>
+        </ion-slide>
+      </div>
+      <div *ngSwitchCase="'step2'">
+        <ion-slide>
+          <form #userForm="ngForm"  *ngIf="active" >
+            <ion-item>
+              <ion-label floating>Nom </ion-label>
+              <ion-input type="text" [(ngModel)]="abonnement.first_name" name="first_name" class="form-control" required #name="ngModel" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Prénom </ion-label>
+              <ion-input type="text" [(ngModel)]="abonnement.last_name" name="last_name" class="form-control" required #name="ngModel" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Type pièce d'identité</ion-label>
+              <ion-select [(ngModel)]="abonnement.identite" name="identite" class="form-control" required #name="ngModel">
+                <ion-option value="001" selected="selected">Cin</ion-option>
+                <ion-option value="002" >Passport</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Numéro pièce </ion-label>
+              <ion-input type="text" [(ngModel)]="abonnement.number_id" name="number_id" class="form-control" required #name="ngModel" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Email </ion-label>
+              <ion-input type="email" [(ngModel)]="abonnement.email" name="email" class="form-control" required #name="ngModel" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Tel </ion-label>
+              <ion-input type="tel" [(ngModel)]="abonnement.tel" name="tel" class="form-control" required #name="ngModel" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Adresse </ion-label>
+              <ion-textarea [(ngModel)]="abonnement.address" name="address" class="form-control" required #name="ngModel"></ion-textarea>
+            </ion-item>
+            <button ion-button type="button" block class="btn-margin" (click)="getBack(1)">Précedent</button>
+            <button ion-button type="button" block class="" (click)="goForward(3)" [disabled]="!userForm.form.valid">Suivant</button>
+          </form>
+        </ion-slide>
+      </div>
+      <div *ngSwitchCase="'step3'">
+        <ion-slide>
+          <form #usageForm="ngForm" *ngIf="active" >
+            <ion-item>
+              <ion-label floating>Usage Electricité</ion-label>
+              <ion-select [(ngModel)]="abonnement.usage_elec" name="usage_elec" class="form-control" required #name="ngModel">
+                <ion-option value="122|115" selected="selected">BT DOMESTIQUE</ion-option>
+                <ion-option value="122|120">BT ECLAIRAGE</ion-option>
+                <ion-option value="122|130">BT PATENTE (COMMERCE)</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Usage Eau</ion-label>
+              <ion-select [(ngModel)]="abonnement.usage_eau" name="usage_eau" class="form-control" required #name="ngModel">
+                <ion-option value="10|20" selected="selected">EAU DOMESTIQUE</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-list radio-group [(ngModel)]="abonnement.abonne_type" name="abonne_type">
+              <ion-list-header >
+                Je suis un ?
+              </ion-list-header>
+              <ion-item>
+                <ion-label>Propriétaire</ion-label>
+                <ion-radio value="proprietaire" checked></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Locataire</ion-label>
+                <ion-radio value="locataire"></ion-radio>
+              </ion-item>
+            </ion-list>
+            <ion-list radio-group [(ngModel)]="abonnement.abonne_state" name="abonne_state">
+              <ion-list-header >
+                Je représente une ?
+              </ion-list-header>
+              <ion-item>
+                <ion-label>Personne physique</ion-label>
+                <ion-radio value="personne" checked></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Société</ion-label>
+                <ion-radio value="societe"></ion-radio>
+              </ion-item>
+            </ion-list>
+            <button ion-button type="button" block class="btn-margin" (click)="getBack(2)">Précedent</button>
+            <button ion-button type="button" block class="" (click)="goForward(4)" [disabled]="!usageForm.form.valid">Suivant</button>
+          </form>
+        </ion-slide>
+      </div>
+      <div *ngSwitchCase="'step4'">
+        <ion-slide>
+          <ion-card>
+            <ion-card-header>
+            Confirmation :
+            </ion-card-header>
+            <ion-card-content>
+              <div class="one-line">
+                <div class="left-side">Tournée</div>
+                <div class="right-side"> {{abonnement.tourne}} </div>
+              </div>
+              <div class="one-line">
+                <div class="left-side">Service</div>
+                <div class="right-side"> {{abonnement.service}} </div>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          <ion-item>
+            <div class="one-line">
+              <div class="left-side">Nom</div>
+              <div class="right-side"> {{abonnement.first_name}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Prénom</div>
+              <div class="right-side"> {{abonnement.last_name}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Type Pièce</div>
+              <div class="right-side"> {{abonnement.identite}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Numéro pièce</div>
+              <div class="right-side"> {{abonnement.number_id}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Email</div>
+              <div class="right-side"> {{abonnement.email}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Tèl</div>
+              <div class="right-side"> {{abonnement.tel}} </div>
+            </div>
+          </ion-item>
+          <button ion-button type="button" color="secondary" class="btn-margin" block (click)="sendForm()">Soumettre</button>
+          <button ion-button type="button" block class="btn-margin" (click)="getBack(3)">Précedent</button>
+        </ion-slide>
+      </div>
+    </div>
+  </ion-slides>
+</ion-content>

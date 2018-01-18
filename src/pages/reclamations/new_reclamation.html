@@ -1,0 +1,49 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Reclamations</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form #reclamForm="ngForm"  *ngIf="active" (ngSubmit)="submitReclamation()">
+    <ion-item>
+      <ion-label floating>Telephone de contact</ion-label>
+      <ion-input type="tel" [(ngModel)]="reclamation.tel" name="tel" class="form-control" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Choisir votre contrat</ion-label>
+      <ion-select [(ngModel)]="reclamation.contrat" name="contrat" class="form-control" required>
+        <ion-option value="544870">544870-Eau</ion-option>
+        <ion-option value="544272">544272-Electricité</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Choisir Origine</ion-label>
+      <ion-select [(ngModel)]="reclamation.services" name="services" class="form-control" required>
+        <ion-option value="RECLAMATION CLIENT">RECLAMATION CLIENT</ion-option>
+        <ion-option value="INFORMATION CLIENT">INFORMATION CLIENT</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Choisir Type</ion-label>
+      <ion-select [(ngModel)]="reclamation.type" name="type" class="form-control" required>
+        <ion-option value="INFO GENERALE">Demande une information générale</ion-option>
+        <ion-option value="INFO PROCEDURE">Demande une information sur la procédure de branchement</ion-option>
+        <ion-option value="INFO ABONNEMENT">Demande une information sur la procédure d'abonnement</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Commentaires</ion-label>
+      <ion-textarea [(ngModel)]="reclamation.comment" name="comment"></ion-textarea>
+    </ion-item>
+    <button ion-button block type="submit" [disabled]="!reclamForm.form.valid">Envoyer</button>
+  </form>
+    <button ion-button block type="button" color="red" (click)=closeModal()>Fermer</button>
+</ion-content>

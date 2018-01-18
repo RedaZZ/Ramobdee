@@ -6,7 +6,7 @@ page-reclamations {
     float:left;
     display: inline-block;
     width: 100%;
-    font-size: 14pt;
+    font-size: 13pt;
     .left-side{
       float:left;
       width:50%;
@@ -16,6 +16,7 @@ page-reclamations {
       float:left;
       font-weight: bold;
       white-space: normal;
+      padding-left: 10px;
     }
   }
 }

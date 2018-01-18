@@ -6,7 +6,7 @@ page-echeances {
     float:left;
     display: inline-block;
     width: 100%;
-    font-size: 14pt;
+    font-size: 13pt;
     .left-side{
       float:left;
       width:50%;
@@ -15,6 +15,7 @@ page-echeances {
       width:50%;
       float:left;
       font-weight: bold;
+      padding-left: 10px;
     }
   }
 }

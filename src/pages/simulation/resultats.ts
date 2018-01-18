@@ -10,7 +10,5 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class resultsPage{
 
   constructor(public navCtrl: NavController, public navParams: NavParams ){
-
-
   }
 }

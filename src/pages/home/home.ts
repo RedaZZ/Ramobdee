@@ -2,6 +2,8 @@
 import { NavController } from 'ionic-angular';
 import {Component, OnInit} from '@angular/core'
 import { Payment} from '../payment/payment';
+import { Auth} from '../auth/auth';
+import { PasswordForgot } from '../password-forgot/password-forgot';
 
 @Component({
   selector: 'page-home',
@@ -22,10 +24,18 @@ export class HomePage implements OnInit {
 		this.first='1'
 	}
 
+  goToRegister(){
+    this.navCtrl.push(Auth);
+  }
+
   sendContract(){
     console.log(this.home);
     this.navCtrl.push(Payment, {
       contract: this.home["contract"]
     });
+  }
+
+  forgot(){
+    this.navCtrl.push(PasswordForgot);
   }
 }

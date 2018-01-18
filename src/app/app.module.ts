@@ -22,12 +22,16 @@ import { Echeances } from '../pages/echeances/echeances';
 import { showEcheancePage} from '../pages/echeances/show-echeance';
 import { Conso } from '../pages/conso/conso';
 import { Reclamations } from '../pages/reclamations/reclamations';
+import { FormPage } from '../pages/reclamations/new_reclamation';
 import { Devis } from '../pages/devis/devis';
 import { Simulation } from '../pages/simulation/simulation';
 import { resultsPage} from '../pages/simulation/resultats';
 import { Domiciliation } from '../pages/domiciliation/domiciliation';
 import { Profil } from '../pages/profil/profil';
 import { Auth } from '../pages/auth/auth';
+import { Abonnement } from '../pages/abonnement/abonnement';
+import { AlertPage } from '../pages/domiciliation/alert';
+import { PasswordForgot } from '../pages/password-forgot/password-forgot';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -55,17 +59,25 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     showEcheancePage,
     Conso,
     Reclamations,
+    FormPage,
     Devis,
     Simulation,
     resultsPage,
     Domiciliation,
     Profil,
     Auth,
-    TranslatePipe
+    Abonnement,
+    TranslatePipe,
+    AlertPage,
+    PasswordForgot
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+/*      scrollPadding: false,
+      scrollAssist: true,
+      autoFocusAssist: false*/
+    }),
     HttpModule,
     JsonpModule
   ],
@@ -87,10 +99,15 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     showEcheancePage,
     Conso,
     Reclamations,
+    FormPage,
     Devis,
     Simulation,
     resultsPage,
-    Domiciliation
+    Abonnement,
+    Domiciliation,
+    Auth,
+    AlertPage,
+    PasswordForgot
   ],
   providers: [
     StatusBar,

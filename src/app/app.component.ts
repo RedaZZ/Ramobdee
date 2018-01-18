@@ -17,12 +17,16 @@ import { Echeances } from '../pages/echeances/echeances';
 import { showEcheancePage} from '../pages/echeances/show-echeance';
 import { Conso } from '../pages/conso/conso';
 import { Reclamations } from '../pages/reclamations/reclamations';
+import { FormPage } from '../pages/reclamations/new_reclamation';
 import { Devis } from '../pages/devis/devis';
 import { Simulation } from '../pages/simulation/simulation';
 import { resultsPage} from '../pages/simulation/resultats';
 import { Domiciliation } from '../pages/domiciliation/domiciliation';
 import { Profil } from '../pages/profil/profil';
+import { Abonnement } from '../pages/abonnement/abonnement';
 import { Auth } from '../pages/auth/auth';
+import { AlertPage } from '../pages/domiciliation/alert';
+import { PasswordForgot } from '../pages/password-forgot/password-forgot';
 
 import { TranslateService }   from './translate/translate.service';
 
@@ -45,7 +49,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Accueil', component: HomePage },
+      { title: 'Accueil' , component: HomePage },
       { title: 'Actualités', component: ActualitesPage },
       { title: 'Paiement', component: Payment },
       { title: 'Réseau', component: Reseau },
@@ -60,8 +64,8 @@ export class MyApp {
       { title: 'Devis', component: Devis },
       { title: 'Simulation', component: Simulation },
       { title: "Domiciliation Bancaire", component: Domiciliation },
-      { title: 'Mon profil', component: Profil },
-      { title: 'Connexion', component: Auth }
+      { title: "Demande d'abonnement", component: Abonnement },
+      { title: 'Inscription', component: Auth }
     ];
     this.activePage = this.pages[0];
   }

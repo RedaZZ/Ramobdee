@@ -21,19 +21,19 @@
   <ion-list *ngIf=" first === '1'" class="choice">
     <button ion-item (click)=" choice = '1'; first = '0' ">
       <ion-icon name="card" item-left></ion-icon>
-        Paiement Direct
+        {{"Paiement Direct"| translate}}
       <ion-icon name="arrow-dropright-circle" item-right></ion-icon>
     </button>
     <button ion-item (click)=" choice = '2'; first = '0' ">
       <ion-icon name="person" item-left></ion-icon>
-        Accès Client
+        {{"Accès Client"| translate}}
       <ion-icon name="arrow-dropright-circle" item-right></ion-icon>
     </button>
   </ion-list>
   <div *ngIf=" first === '0' ">
     <div  *ngIf=" choice === '1' ">
       <div class="text-center">
-        <button ion-button center text-center outline (click)=" first = '1'">Paiement</button>
+        <button ion-button center text-center outline (click)=" first = '1'">{{"Paiement"| translate}}</button>
       </div>
       <ion-card>
         <ion-card-content>
@@ -42,30 +42,30 @@
       </ion-card>
       <form (ngSubmit)="sendContract()">
       <ion-item>
-        <ion-input type="text" placeholder="Numéro de contrat" [(ngModel)]="home.contract" name="contract"></ion-input>
-        <button item-right ion-button center text-cente default>Valider</button>
+        <ion-input type="number" placeholder='{{"Numéro de contrat"| translate}}' [(ngModel)]="home.contract" name="contract"></ion-input>
+        <button item-right ion-button center text-cente default>{{"Valider"| translate}}</button>
       </ion-item>
       </form>
     </div>
     <div *ngIf=" choice==='2'">
       <div class="text-center">
-        <button ion-button center text-center outline (click)=" first = '1'">Accès Client</button>
+        <button ion-button center text-center outline (click)=" first = '1'">{{"Accès Client"| translate}}</button>
       </div>
       <ion-list class="card width100">
         <ion-item>
-         <ion-input type="text" placeholder="Login" name="login"></ion-input>
+         <ion-input type="text" placeholder='{{"Identifiant"| translate}}' name="login"></ion-input>
         </ion-item>
         <ion-item>
-         <ion-input type="password" placeholder="Mot de passe" name="password"></ion-input>
+         <ion-input type="password" placeholder='{{"Mot de passe"| translate}}' name="password"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Mémoriser</ion-label>
+          <ion-label>{{"Mémoriser"| translate}}</ion-label>
           <ion-checkbox color="dark" checked="true"></ion-checkbox>
         </ion-item>
       </ion-list>
-        <div class="link-login"><a> Mot de passe oublié?</a></div>
-      <button ion-button center text-center default block>Valider</button>
-      <button ion-button center text-center default block>Créer Compte</button>
+        <div class="link-login" (click)="forgot()"><a>{{"Mot de passe oublié?"| translate}}</a></div>
+      <button ion-button center text-center default block>{{"Valider"| translate}}</button>
+      <button ion-button center text-center default block (click)=goToRegister()>{{"Créer Compte"| translate}}</button>
     </div>
   </div>
 </ion-content>
