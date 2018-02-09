@@ -18,7 +18,7 @@ export class Conso {
   }
 
   getMaConso() {
-  this.http.get('libresources/conso.json').map((res:Response) => res.json())
+  this.http.get('http://9e5a89d6.ngrok.io/api/jsonws/WsForMob-portlet.wsmob/get-conso/numero_contrat/575648').map((res:Response) => res.json())
   .subscribe(data => {
      this.consos = data;
   });

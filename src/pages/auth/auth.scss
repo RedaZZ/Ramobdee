@@ -11,3 +11,29 @@ page-auth {
     overflow-y: auto;
   }
 }
+
+page-conditions{
+  .titre {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    border-bottom: 1px double #000;
+    width: 90%;
+  }
+
+  strong{
+    font-weight:bold;
+  }
+
+  .lien {
+    color: #333333 !important;
+  }
+
+  ion-card{
+    margin:2px !important;
+    padding:8px !important;
+    width: 100% !important;
+  }
+}

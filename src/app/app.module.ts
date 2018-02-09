@@ -29,6 +29,7 @@ import { resultsPage} from '../pages/simulation/resultats';
 import { Domiciliation } from '../pages/domiciliation/domiciliation';
 import { Profil } from '../pages/profil/profil';
 import { Auth } from '../pages/auth/auth';
+import { ConditionPage } from '../pages/auth/conditions';
 import { Abonnement } from '../pages/abonnement/abonnement';
 import { AlertPage } from '../pages/domiciliation/alert';
 import { PasswordForgot } from '../pages/password-forgot/password-forgot';
@@ -39,6 +40,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService }   from './translate/translate.service';
 import { TranslatePipe }   from './translate/translate.pipe';
 import { TRANSLATION_PROVIDERS}   from './translate/translation';
+
+//spinner service
+/*import { LoaderService } from './loader.service';*/
+
 
 
 @NgModule({
@@ -66,6 +71,7 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Domiciliation,
     Profil,
     Auth,
+    ConditionPage,
     Abonnement,
     TranslatePipe,
     AlertPage,
@@ -79,8 +85,10 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
       autoFocusAssist: false*/
     }),
     HttpModule,
-    JsonpModule
+    JsonpModule,
+
   ],
+
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -106,6 +114,7 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Abonnement,
     Domiciliation,
     Auth,
+    ConditionPage,
     AlertPage,
     PasswordForgot
   ],

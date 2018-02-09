@@ -19,6 +19,9 @@
   "exclude": [
     "node_modules"
   ],
+  "types": [
+    "hammerjs"
+  ],
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false

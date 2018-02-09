@@ -7,7 +7,9 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
+
   <ion-segment [(ngModel)]="steps">
     <ion-segment-button disabled="true" value="step1">
       Etape 1
@@ -15,113 +17,102 @@
     <ion-segment-button disabled="true" value="step2">
       Etape 2
     </ion-segment-button>
-    <ion-segment-button disabled="true" value="step3">
-      Etape 3
-    </ion-segment-button>
-    <ion-segment-button disabled="true" value="step4">
-      Etape 4
-    </ion-segment-button>
   </ion-segment>
+
   <ion-slides >
     <div [ngSwitch]="steps">
       <div *ngSwitchCase="'step1'">
         <ion-slide>
           <ion-card>
             <ion-card-content>
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+             eiusmod tempor incididunt.
             </ion-card-content>
           </ion-card>
+
           <form #authForm="ngForm"  *ngIf="active" >
+
             <ion-item>
-              <ion-label floating>N° contrat </ion-label>
-              <ion-input type="number" [(ngModel)]="user.contract" name="contract" class="form-control" required #name="ngModel" ></ion-input>
+              <ion-label floating>Titre</ion-label>
+              <ion-select [(ngModel)]="user.titre" name="titre"
+              class="form-control" required #name="ngModel">
+                <ion-option value="MR" selected="selected">Mr</ion-option>
+                <ion-option value="MME" >Mme</ion-option>
+                <ion-option value="MLLE" >Mlle</ion-option>
+              </ion-select>
             </ion-item>
+
+            <ion-item>
+              <ion-label floating>Nom</ion-label>
+              <ion-input type="text" [(ngModel)]="user.name" name="name"
+              class="form-control" required #name="ngModel" >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Prénom</ion-label>
+              <ion-input type="text" [(ngModel)]="user.prenom" name="prenom"
+              class="form-control" required #name="ngModel" >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Identifiant </ion-label>
+              <ion-input type="text" [(ngModel)]="user.piece_identite"
+              name="piece_identite" class="form-control" required #name="ngModel">
+              </ion-input>
+            </ion-item>
+
+            <button ion-button type="button" class="btn-margin" block
+            (click)="goForward(2)" [disabled]="!authForm.form.valid">Suivant
+            </button>
+
+          </form>
+        </ion-slide>
+
+      </div>
+
+      <div *ngSwitchCase="'step2'">
+        <ion-slide>
+          <form #authForm2="ngForm"  *ngIf="active" >
+
+            <ion-item>
+              <ion-label floating>Email </ion-label>
+              <ion-input type="email" [(ngModel)]="user.email" name="email"
+              class="form-control" required #name="ngModel" >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Mot de passe </ion-label>
+              <ion-input type="password" [(ngModel)]="user.mot_de_passe"
+              name="mot_de_passe" class="form-control" required #name="ngModel" >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Tel </ion-label>
+              <ion-input type="tel" [(ngModel)]="user.telephone" name="telephone"
+              class="form-control" required #name="ngModel" >
+
+              </ion-input>
+            </ion-item>
+
             <ion-item class="btn-margin">
               <ion-label>Conditions générales d'utilisation</ion-label>
               <ion-checkbox color="dark" checked="false" [(ngModel)]="user.accept"
-                name="accept" class="form-control" required #name="ngModel">
+                name="accept" class="form-control" (ionChange)="openModal($event)"
+                required #name="ngModel">
               </ion-checkbox>
             </ion-item>
-            <button ion-button type="button" class="btn-margin" block (click)="goForward(2)" [disabled]="!authForm.form.valid">Suivant</button>
-          </form>
-        </ion-slide>
-      </div>
-      <div *ngSwitchCase="'step2'">
-        <ion-slide>
-          <ion-card>
-            <ion-card-content>
-             Nom: Reda ELOUAFI
-            </ion-card-content>
-          </ion-card>
-          <form #authForm2="ngForm"  *ngIf="active" >
-            <ion-item>
-              <ion-label floating>Identifiant </ion-label>
-              <ion-input type="text" [(ngModel)]="user.identifiant" name="identifiant" class="form-control" required #name="ngModel" ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating>Type pièce d'identité</ion-label>
-              <ion-select [(ngModel)]="user.identite" name="identite" class="form-control" required #name="ngModel">
-                <ion-option value="001" selected="selected">Cin</ion-option>
-                <ion-option value="002" >Passport</ion-option>
-              </ion-select>
-            </ion-item>
-            <button ion-button type="button" class="btn-margin" block (click)="goForward(3)" [disabled]="!authForm2.form.valid">Suivant</button>
-            <button ion-button type="button" class="" block (click)="getBack(1)" >Précedant</button>
-          </form>
-        </ion-slide>
-      </div>
-      <div *ngSwitchCase="'step3'">
-        <ion-slide>
-          <ion-card>
-            <ion-card-content>
-             Nom: Reda ELOUAFI
-            </ion-card-content>
-          </ion-card>
-          <form #authForm3="ngForm"  *ngIf="active" >
-            <ion-item>
-              <ion-label floating>Email </ion-label>
-              <ion-input type="email" [(ngModel)]="user.email" name="email" class="form-control" required #name="ngModel" ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating>Mot de passe </ion-label>
-              <ion-input type="password" [(ngModel)]="user.password" name="password" class="form-control" required #name="ngModel" ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating>Tel </ion-label>
-              <ion-input type="tel" [(ngModel)]="user.tel" name="tel" class="form-control" required #name="ngModel" ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating>Adresse </ion-label>
-              <ion-textarea [(ngModel)]="user.address" name="address" class="form-control" required #name="ngModel"></ion-textarea>
-            </ion-item>
-            <button ion-button type="button" class="btn-margin" block (click)="goForward(4)" [disabled]="!authForm3.form.valid">Suivant</button>
-            <button ion-button type="button" class="" block (click)="getBack(2)" >Précedant</button>
-          </form>
-        </ion-slide>
-      </div>
-      <div *ngSwitchCase="'step4'">
-        <ion-slide>
-          <ion-card>
-            <ion-card-content>
-              Associer les contrats
-            </ion-card-content>
-          </ion-card>
-          <form #authForm3="ngForm"  *ngIf="active" >
-            <ion-item>
-              <ion-label floating>Numéro de contrat </ion-label>
-              <ion-input type="number" [(ngModel)]="contracts.contrat" name="contrat" class="form-control" required #name="ngModel" ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating>Service</ion-label>
-              <ion-select [(ngModel)]="contracts.service" name="service" class="form-control" required #name="ngModel">
-                <ion-option value="EAU" selected="selected">Eau</ion-option>
-                <ion-option value="ELECTRICITE">Electricité</ion-option>
-                <ion-option value="EAUELECTRICITE">Eau & Electricité</ion-option>
-              </ion-select>
-            </ion-item>
-            <button ion-button type="button" class="btn-margin" (click)="addContrat()" [disabled]="!authForm3.form.valid">Ajouter</button>
-            <button ion-button type="button" class="btn-margin" block (click)="register()" >Valider</button>
-            <button ion-button type="button" class="" block (click)="getBack(3)" >Précedant</button>
+
+            <button ion-button type="button" class="btn-margin" block
+            (click)="register()" [disabled]="!authForm2.form.valid">Valider
+            </button>
+            <button ion-button type="button" class="" block
+            (click)="getBack(1)" >Précedant
+            </button>
+
           </form>
         </ion-slide>
       </div>

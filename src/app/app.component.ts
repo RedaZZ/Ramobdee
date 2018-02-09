@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit} from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,10 +25,14 @@ import { Domiciliation } from '../pages/domiciliation/domiciliation';
 import { Profil } from '../pages/profil/profil';
 import { Abonnement } from '../pages/abonnement/abonnement';
 import { Auth } from '../pages/auth/auth';
+import { ConditionPage } from '../pages/auth/conditions';
 import { AlertPage } from '../pages/domiciliation/alert';
 import { PasswordForgot } from '../pages/password-forgot/password-forgot';
 
 import { TranslateService }   from './translate/translate.service';
+
+/*import {NglModule} from 'ng-lightning/ng-lightning';
+import { LoaderService } from './loader.service';*/
 
 @Component({
   templateUrl: 'app.html'
@@ -36,15 +40,21 @@ import { TranslateService }   from './translate/translate.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  objLoaderStatus: boolean;
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
   pages2: Array<{title: string, component: any}>;
   activePage: any;
 
+  // for spinner
+  showLoader: boolean;
+
 
   constructor(public platform: Platform, public statusBar: StatusBar,
               public splashScreen: SplashScreen) {
+    this.objLoaderStatus = false;
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -87,5 +97,6 @@ export class MyApp {
   checkActive(page){
     return page == this.activePage;
   }
+
 
 }
