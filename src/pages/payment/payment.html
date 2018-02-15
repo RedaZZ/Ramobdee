@@ -23,14 +23,14 @@
     </ion-label>
     <ion-checkbox color="dark" disabled="false" item-end (ionChange)="checkAll($event)" #allCheckbox></ion-checkbox>
   </ion-list-header>
-    <ion-item text-wrap *ngFor=" let facture of factures.invoices">
+    <ion-item text-wrap *ngFor=" let facture of factures">
       <ion-thumbnail item-start>
         <img src="assets/images/elec-icon.jpg">
       </ion-thumbnail>
       <ion-label>
-        <h2>N Facture : {{facture.numFacture}}</h2>
-        <h3>Montant : {{facture.montantTTC}} DH</h3>
-        <p>Date Facture : {{facture.dateFacture}} </p>
+        <h2>N Facture : {{facture.ID_FAC_CLI}}</h2>
+        <h3>Montant : {{facture.MNT_FAC}} DH</h3>
+        <p>Date Facture : {{facture.NUM_PER_TAR}} </p>
       </ion-label>
       <ion-checkbox  [checked]="facture.checked" (ionChange)="getValue(facture, $event)" color="dark" disabled="false" item-end></ion-checkbox>
     </ion-item>

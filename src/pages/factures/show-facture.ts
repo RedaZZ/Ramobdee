@@ -12,23 +12,22 @@ export class showFacturePage{
   public period;
   public amount;
   public dueDate;
+  public listEcr;
   public typeFacture;
   public solde;
-  public amountDone;
+/*  public amountDone;
   public regulationType;
   public regulationMode;
-  public regulationDate;
+  public regulationDate;*/
 
   constructor(public navCtrl: NavController, public navParams: NavParams ){
+    console.log(navParams);
     this.number = navParams.get("number");
     this.period = navParams.get("period");
     this.amount = navParams.get("amount");
     this.dueDate = navParams.get("dueDate");
-    this.typeFacture ="Facture Relève";
-    this.solde ="0.0";
-    this.amountDone ="65.0";
-    this.regulationType ="Réglement M2T";
-    this.regulationMode ="Espéces";
-    this.regulationDate ="10/01/2017";
+    this.typeFacture = navParams.get("typeFacture");
+    this.solde = navParams.get("solde");
+    this.listEcr = navParams.get("listEcr");
   }
 }

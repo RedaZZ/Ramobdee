@@ -14,9 +14,12 @@ export class Conso {
   consos: any;
   listCta:any;
   shownGroup = null;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public loadingCtrl: LoadingController) {
+  defaultCta:any;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public loadingCtrl: LoadingController) {
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
+    this.defaultCta=ctaArray[0];
+
     if (ctaArray.length > 0) {
       var array = [];
 
@@ -29,8 +32,8 @@ export class Conso {
         });
       });
 
-      this.listCta = array.reverse();
-      this.consos = this.getMaConso(ctaArray[0]);
+      this.listCta = array
+      this.consos = this.getMaConso(this.defaultCta);
     }else{
       this.listCta = [];
       this.consos = [];

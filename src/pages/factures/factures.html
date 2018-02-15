@@ -14,7 +14,7 @@
   <ion-item class="top-item">
     <ion-label floating>Type Contrat</ion-label>
     <ion-select [(ngModel)]="facture.objet" name="object" (ionChange)="changeFacture($event)" >
-      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="i == 0">{{cta.num}}-{{cta.type}}</ion-option>
+      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
   <button ion-item text-wrap *ngFor=" let facture of factures" (click)="showFacture(facture)">
@@ -25,7 +25,7 @@
       </div>
       <div class="one-line">
         <div class="left-side">Période</div>
-        <div class="right-side"> {{facture.NUM_PER_TAR}} </div>
+        <div class="right-side"> {{facture.NUM_PER_TAR}}/{{facture.ANNNE}} </div>
       </div>
       <div class="one-line">
         <div class="left-side">Montant</div>

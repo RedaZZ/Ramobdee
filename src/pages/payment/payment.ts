@@ -1,10 +1,10 @@
 import { Component, Injectable, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController} from 'ionic-angular';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
+import { AuthService } from '../../providers/auth-service';
 
 
 @Component({
@@ -21,26 +21,38 @@ export class Payment {
 
   @ViewChild('allCheckbox') allCheckbox ;
 
-  constructor( private http: Http,  public navParams: NavParams, public navCtrl: NavController) {
-    this.factures = this.retrievefactures();
+  constructor( private http: Http,  public navParams: NavParams,
+              public navCtrl: NavController, public loadingCtrl: LoadingController) {
     this.contract = navParams.get("contract");
-  }
+    this.factures = this.retrievefactures();
 
-  getfactures() {
-    return this.http.get('http://www.fatourati.ma/RM-Rest/rest/rm/customerInvoices/'+this.navParams.get("contract")).map((res:Response) => res.json());
+    var url = "https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/"+this.contract;
+     this.http.get(url).map((res:Response) => res.json())
+    .subscribe(data => {
+      this.customerName = data.split("|")[6];
+    });
   }
 
   retrievefactures() {
-    return this.getfactures().subscribe((response) => {
-        console.log("response");
-        console.log(response);
-        this.factures = response;
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
+    this.http.get('https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/get-facture/cta/'+this.contract).map((res:Response) => res.json())
+    .subscribe(data => {
+      console.log(data);
+      loading.dismiss();
+      var result  = data.filter(function(o){return o.SLD_ECR !== "0,00" } );
+      console.log(result);
+      this.factures = result;
+      this.totalTTC = this.getTotal(this.factures);
+    });
+/*        this.factures = response;
         this.customerName = response.customerName;
-        this.totalTTC = this.getTotal(response.invoices);
-      }, (error) => {
-        console.log("error");
-        console.log(error);
-      });
+        this.totalTTC = this.getTotal(response.invoices);*/
+
   }
 
   ionViewDidLoad() {
@@ -48,19 +60,20 @@ export class Payment {
   }
 
   checkAll(e:any) {
-    this.factures.invoices.forEach((f) => {
+    this.factures.forEach((f) => {
       if (e.checked) {
         f.checked = true;
       } else {
         f.checked = false;
       }
     })
+    this.totalTTC = this.getTotal(this.factures);
   }
 
   getValue(facture, e:any) {
     if (e.checked) {
       console.log("checked");
-      this.totalTTC = facture.montantTTC;
+      this.totalTTC = facture.MNT_FAC;
     } else {
       console.log("not checked");
       this.allCheckbox.checked  = false;
@@ -70,9 +83,10 @@ export class Payment {
   }
 
   getTotal(invoices) {
+    console.log(invoices);
     var sum = 0;
     invoices.forEach(function(invoice) {
-      var total = Number(invoice.montantTTC);
+      var total = Number(invoice.MNT_FAC);
       sum += total;
     });
     return sum.toFixed(2);

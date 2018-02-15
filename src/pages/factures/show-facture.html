@@ -29,30 +29,32 @@
       <div class="right-side"> {{dueDate}} </div>
     </div>
   </ion-item>
-  <div class="details-section">
-    <div class="one-line">
-      <div class="left-side">Type de facture</div>
-      <div class="right-side"> {{typeFacture}} </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Solde</div>
-      <div class="right-side"> {{solde}} </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Montant réglé</div>
-      <div class="right-side"> {{amountDone}} </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Type réglement</div>
-      <div class="right-side"> {{regulationType}} </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Mode de réglement</div>
-      <div class="right-side"> {{regulationMode}} </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Date de réglement</div>
-      <div class="right-side"> {{regulationDate}} </div>
+  <div *ngFor=" let ecr of listEcr; let i=index " >
+    <div class="details-section">
+      <div class="one-line">
+        <div class="left-side">Type de facture</div>
+        <div class="right-side"> {{typeFacture}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Solde</div>
+        <div class="right-side"> {{solde}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Montant réglé</div>
+        <div class="right-side"> {{ecr.MNT_REG}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Type réglement</div>
+        <div class="right-side"> {{ecr.TYP_ECR}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Mode de réglement</div>
+        <div class="right-side"> {{ecr.MOD_REG}} </div>
+      </div>
+      <div class="one-line">
+        <div class="left-side">Date de réglement</div>
+        <div class="right-side"> {{ecr.DAT_ECR}} </div>
+      </div>
     </div>
   </div>
 </ion-content>
