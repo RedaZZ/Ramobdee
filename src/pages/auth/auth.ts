@@ -31,7 +31,7 @@ export class Auth {
   goForward(number) {
     // there will be only two steps to create a user instead of 4
 /*    if (this.steps === "step1") {
-      var url = "https://921012d9.ngrok.io/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/"+this.user["contract"];
+      var url = "https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/"+this.user["contract"];
         this.http.get(url).map((res:Response) => res.json())
       .subscribe(data => {
         console.log(data);
@@ -55,8 +55,7 @@ export class Auth {
   }
 
   register(){
-
-        // init loading spinner
+     // init loading spinner
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -72,7 +71,7 @@ export class Auth {
     var telephone = this.user['telephone'];
 
     console.log(this.user);
-    var url = "https://921012d9.ngrok.io/api/jsonws/WsForMob-portlet.wsmob/creer-utilisateur/name/"
+    var url = "https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/creer-utilisateur/name/"
     +name+"/prenom/" +prenom+"/piece_identite/"+piece_identite+"/titre/"+titre+"/email/"+email+
     "/telephone/"+telephone+"/mot_de_passe/"+mot_de_passe;
 
@@ -89,9 +88,35 @@ export class Auth {
         this.presentAlert("Cet Email exist déja");
       } else {
         // creation avec succées
+        //url to get hash to send email confirmation
+        var urlHash = "https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/get-hash/id-user/"+data+"/action/A";
+        this.http.get(urlHash).map((res:Response) => res.json()).subscribe(dataHash => {
+          var hashSplitted = dataHash.split("|");
+          if (hashSplitted[0] === "1" ) {
+            var hash = hashSplitted[1];
+            // url to send email
+            var subject = "Confirmation creation compte";
+            var link = "https://www.radeema.ma/bienvenue-dans-votre-espace-client/activation-de-mon-espace?p_p_id=activationcompte_WAR_RADEEMAportlet%26email="+email+"%26id="+data+"%26hash="+hash;
+            var content = "<p>Pour confirmer votre inscription sur le site de la RADEEMA, cliquer sur le lien suivant: <br>"+link+"</p>";
+
+            var urlSender = "https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/envoyer-mail?mail="+email+"&subject="+subject+"&content="+content;
+            this.http.get(urlSender).map((res:Response) => res.json()).subscribe(dtaEmail => {
+            },
+            error => {
+              console.log(error);
+            });
+          }
+        },
+        error => {
+          console.log(error);
+        });
         this.presentAlert("Vieuillez valider votre inscription en cliquant sur le lien reçu par Email");
       }
+      console.log("step 2");
 /*      this.results = data;*/
+    },
+    error => {
+      console.log(error);
     });
 
   }

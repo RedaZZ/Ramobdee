@@ -51,23 +51,30 @@
       <div class="text-center">
         <button ion-button center text-center outline (click)=" first = '1'">{{"Accès Client"| translate}}</button>
       </div>
-      <form (ngSubmit)="login()">
-        <ion-list class="card width100">
-          <ion-item>
-           <ion-input type="email" placeholder='{{"Identifiant"| translate}}' name="login" [(ngModel)]="user.login"></ion-input>
-          </ion-item>
-          <ion-item>
-           <ion-input type="password" placeholder='{{"Mot de passe"| translate}}' name="password" [(ngModel)]="user.password"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>{{"Mémoriser"| translate}}</ion-label>
-            <ion-checkbox color="dark" checked="true"></ion-checkbox>
-          </ion-item>
-        </ion-list>
-        <div class="link-login" (click)="forgot()"><a>{{"Mot de passe oublié?"| translate}}</a></div>
-        <button ion-button center text-center default block type="submit">{{"Valider"| translate}}</button>
-        <button ion-button center text-center default block (click)=goToRegister()>{{"Créer Compte"| translate}}</button>
-      </form>
+      <div  *ngIf=" userName " class="card width100">
+        <p>Bienvenue {{userName}} </p> <br>
+        <button ion-button center text-center default block (click)=signout()>{{"signout"| translate}}</button>
+      </div>
+      <div  *ngIf=" !userName">
+        <form (ngSubmit)="login()">
+          <ion-list class="card width100">
+            <ion-item>
+             <ion-input type="email" placeholder='{{"Identifiant"| translate}}' name="login" [(ngModel)]="user.login"></ion-input>
+            </ion-item>
+            <ion-item>
+             <ion-input type="password" placeholder='{{"Mot de passe"| translate}}' name="password" [(ngModel)]="user.password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>{{"Mémoriser"| translate}}</ion-label>
+              <ion-checkbox color="dark" checked="true"></ion-checkbox>
+            </ion-item>
+          </ion-list>
+          <div class="link-login" (click)="forgot()"><a>{{"Mot de passe oublié?"| translate}}</a></div>
+          <button ion-button center text-center default block type="submit">{{"Valider"| translate}}</button>
+        </form>
+          <button ion-button center text-center default block (click)=goToRegister()>{{"Créer Compte"| translate}}</button>
+      </div>
+
     </div>
   </div>
 </ion-content>

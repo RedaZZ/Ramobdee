@@ -18,5 +18,6 @@ export const LANG_EN_TRANS = {
   "Actualités":"News",
   "Réseau":"Network",
   "PassReset":"Forgot your password?",
-  "Email":"e-mail adress"
+  "Email":"e-mail adress",
+  "signout": "Sign Out"
 };

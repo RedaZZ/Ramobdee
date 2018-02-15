@@ -1,10 +1,10 @@
-
 import { NavController, LoadingController, AlertController} from 'ionic-angular';
 import {Component, OnInit} from '@angular/core'
 import { Payment} from '../payment/payment';
 import { Auth} from '../auth/auth';
 import { PasswordForgot } from '../password-forgot/password-forgot';
 import { Http, Response } from '@angular/http';
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   selector: 'page-home',
@@ -19,43 +19,56 @@ export class HomePage implements OnInit {
 		autoHeight: true
 	};
 
-  home= {}
-  user={};
+  home= {};
+  user= {};
+
+  userName: string;
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController,
-   public loadingCtrl: LoadingController, private http: Http) {
+   public loadingCtrl: LoadingController, private http: Http, private auth: AuthService) {
+
+    let info = JSON.parse(this.auth.getUserInfo()) ;
+    console.log("-------"+info);
+
+    this.userName =null;
+    if (info && info["nom"] !== "undefined") {
+      this.userName = info["nom"]+" "+info["prenom"];
+    }
   };
 
   login(){
-
-    // init loading spinner
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-
     var login = this.user['login'];
     var password = this.user['password'];
-    console.log(this.user);
 
-    var urlGetId = "https://921012d9.ngrok.io/api/jsonws/WsForMob-portlet.wsmob/verifier-mot-passe/mail/"+login+"/password/"+password;
-    // Api call start
-    loading.present();
-
-    this.http.get(urlGetId).map((res:Response) => res.json()).subscribe(data => {
-      console.log(data);
-      // api call done
-      loading.dismiss();
-
-      var splitted = data.split("|");
-      if (splitted[0] === "-1") {
-        console.log(splitted[2]);
-        this.presentAlert(splitted[1]);
-      } else {
-        // creation avec succées
-        this.presentAlert("Yaaaaaaay!!!");
-      }
-    });
+    if (login && password) {
+      this.auth.login({email:login, password:password}).subscribe(allowed => {
+        if (allowed) {
+          this.navCtrl.setRoot(this.navCtrl.getActive().component);
+        } else {
+          console.log("Access Denied");
+        }
+      },
+      error => {
+        console.log(error);
+      });
+    }
   }
+
+  signout(){
+    this.auth.logout().subscribe(logedOut => {
+      console.log(logedOut);
+      console.log("logedOut");
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    /*        if (allowed) {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    } else {
+    console.log("Access Denied");
+    }*/
+    },
+    error => {
+      console.log(error);
+    });
+   }
 
 	ngOnInit(){
 		this.first='1'

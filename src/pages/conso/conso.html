@@ -19,9 +19,8 @@
 <ion-content padding>
   <ion-item class="top-item">
     <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="conso.objet" name="object">
-      <ion-option value="544870">544870-Eau</ion-option>
-      <ion-option value="544272">544272-Electricité</ion-option>
+    <ion-select [(ngModel)]="conso.objet" name="object" (ionChange)="changeConso($event)" >
+      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="i == 0">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
   <div *ngFor=" let conso of consos; let i=index " (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" class="conso-itm">
@@ -29,7 +28,7 @@
       <ion-label>
         <div class="one-line">
           <div class="left-side">Index</div>
-          <div class="right-side"> {{conso.NUM_CTA_ABT}} </div>
+          <div class="right-side"> {{conso.VAL_IDX_CSO}} </div>
         </div>
         <div class="one-line">
           <div class="left-side">Période</div>

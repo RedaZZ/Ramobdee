@@ -41,8 +41,9 @@ import { TranslateService }   from './translate/translate.service';
 import { TranslatePipe }   from './translate/translate.pipe';
 import { TRANSLATION_PROVIDERS}   from './translate/translation';
 
-//spinner service
-/*import { LoaderService } from './loader.service';*/
+//Login
+import { AuthService } from './../providers/auth-service';
+
 
 
 
@@ -124,6 +125,7 @@ import { TRANSLATION_PROVIDERS}   from './translate/translation';
     Geolocation,
     CallNumber,
     TRANSLATION_PROVIDERS, TranslateService,
+    AuthService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
