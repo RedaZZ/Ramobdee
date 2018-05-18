@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -28,8 +28,9 @@ import { Auth } from '../pages/auth/auth';
 import { ConditionPage } from '../pages/auth/conditions';
 import { AlertPage } from '../pages/domiciliation/alert';
 import { PasswordForgot } from '../pages/password-forgot/password-forgot';
-
+import { AuthService } from '../providers/auth-service';
 import { TranslateService }   from './translate/translate.service';
+import { Events } from 'ionic-angular';
 
 /*import {NglModule} from 'ng-lightning/ng-lightning';
 import { LoaderService } from './loader.service';*/
@@ -43,8 +44,8 @@ export class MyApp {
   objLoaderStatus: boolean;
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
-  pages2: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, needAuth: boolean}>;
+  pages2: Array<{title: string, component: any, needAuth: boolean}>;
   activePage: any;
 
   // for spinner
@@ -52,30 +53,31 @@ export class MyApp {
 
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-              public splashScreen: SplashScreen) {
+              public splashScreen: SplashScreen, private auth: AuthService,
+              private alertCtrl: AlertController, public events: Events) {
     this.objLoaderStatus = false;
 
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Accueil' , component: HomePage },
-      { title: 'Actualités', component: ActualitesPage },
-      { title: 'Paiement', component: Payment },
-      { title: 'Réseau', component: Reseau },
-      { title: 'Contact', component: Contact },
-      { title: 'Paramètre', component: Settings }
+      { title: 'home' , component: HomePage, needAuth: false },
+      { title: 'actu', component: ActualitesPage, needAuth: false },
+      { title: 'Paiement', component: Payment, needAuth: false},
+      { title: 'reso', component: Reseau ,needAuth: false},
+      { title: 'contact', component: Contact, needAuth: false },
+      { title: 'params', component: Settings, needAuth: false }
     ];
     this.pages2 = [
-      { title: 'Mes Factures', component: Factures },
-      { title: 'Echéance', component: Echeances },
-      { title: 'Historique consommation', component: Conso },
-      { title: 'Réclamations', component: Reclamations },
-      { title: 'Devis', component: Devis },
-      { title: 'Simulation', component: Simulation },
-      { title: "Domiciliation Bancaire", component: Domiciliation },
-      { title: "Demande d'abonnement", component: Abonnement },
-      { title: 'Inscription', component: Auth }
+      { title: 'Mes Factures', component: Factures, needAuth: true },
+      { title: 'Echéance', component: Echeances, needAuth: true },
+      { title: 'Historique consommation', component: Conso, needAuth: true },
+      { title: 'Réclamations', component: Reclamations, needAuth: true },
+      { title: 'Devis', component: Devis, needAuth: true },
+      { title: 'Simulation', component: Simulation, needAuth: true },
+      { title: "Domiciliation Bancaire", component: Domiciliation, needAuth: true },
+      { title: "Demande d'abonnement", component: Abonnement, needAuth: true },
+      { title: 'Inscription', component: Auth, needAuth: false }
     ];
     this.activePage = this.pages[0];
   }
@@ -86,17 +88,61 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.manageMenu();
     });
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
-    this.activePage = page;
+    if (this.currentUser() || !page.needAuth) {
+      this.nav.setRoot(page.component);
+      this.activePage = page;
+    } else {
+      this.checkConnect();
+    }
   }
 
   checkActive(page){
     return page == this.activePage;
   }
 
+  currentUser(){
+    var user = JSON.parse(this.auth.getUserInfo()) ;
+    return user;
+  }
+
+  checkConnect(){
+    let confirm = this.alertCtrl.create({
+      title: 'Authentification',
+      message: 'Vieuillez vous authentifier',
+      buttons: [
+        {
+          text: 'Non',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Oui',
+          handler: () => {
+            this.nav.setRoot(HomePage);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  manageMenu(){
+    var $title = $(".menu-title");
+    var $menu = $("#list-connect");
+    $title.click(function() {
+      if ($menu.hasClass("hidden")) {
+        $(this).find("#right-arrow").attr("name", "arrow-down");
+        $menu.removeClass("hidden");
+      } else {
+        $(this).find("#right-arrow").attr("name", "arrow-up");
+        $menu.addClass("hidden");
+      }
+    });
+  }
 
 }

@@ -13,11 +13,13 @@ export class Factures {
   factures: any;
   listCta:any;
   defaultCta:any;
+  isEmpty: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private http: Http, public loadingCtrl: LoadingController) {
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
     this.defaultCta=ctaArray[0];
+    this.isEmpty = true;
 
     if (ctaArray.length > 0) {
       var array = [];
@@ -50,11 +52,14 @@ export class Factures {
       loading.dismiss();
       console.log(data);
       this.factures = data;
+      if (this.factures[0].ERR_COD !=="007") {
+        this.isEmpty = false;
+      }
     });
   }
 
   changeFacture(e:any){
-    console.log(this.facture["objet"]);
+    this.isEmpty = true;
     this.factures = this.getMesFactures(this.facture["objet"]);
   }
 

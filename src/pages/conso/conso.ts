@@ -15,6 +15,7 @@ export class Conso {
   listCta:any;
   shownGroup = null;
   defaultCta:any;
+  isEmpty: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public loadingCtrl: LoadingController) {
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
@@ -26,7 +27,6 @@ export class Conso {
       ctaArray.forEach((cta, index) => {
         this.http.get('https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/'+cta).map((res:Response) => res.json())
         .subscribe(data => {
-          console.log(data);
           var result = data.split("|");
           array.push({'num':result[0], 'type':result[3]});
         });
@@ -50,13 +50,15 @@ export class Conso {
     this.http.get('https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/get-conso/numero_contrat/'+ctaNum).map((res:Response) => res.json())
     .subscribe(data => {
       loading.dismiss();
-      console.log(data);
       this.consos = data;
+      if (this.consos[0].ERR_COD !=="007") {
+        this.isEmpty = false;
+      }
     });
   }
 
   changeConso(e:any){
-    console.log(this.conso["objet"]);
+    this.isEmpty = true;
     this.consos = this.getMaConso(this.conso["objet"]);
   }
 

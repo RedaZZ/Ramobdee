@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TranslateService }   from '../../app/translate/translate.service';
-
+import { Events } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -17,7 +17,7 @@ export class Settings {
 /*  currentLang: string;*/
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private _translate: TranslateService) {
+              private _translate: TranslateService, public events: Events) {
     let locale = localStorage.getItem('appLang');
     this.language = locale;
   }
@@ -28,6 +28,7 @@ export class Settings {
 
   changeLang(){
     localStorage.setItem('appLang', this.language);
+
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 

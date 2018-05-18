@@ -1,4 +1,8 @@
 page-factures {
+  .impaye{
+    background-color:#ff7171;
+    margin-bottom: 2px;
+  }
   .top-item{
     padding-bottom:20px;
   }
@@ -15,7 +19,7 @@ page-factures {
       width:50%;
       float:left;
       font-weight: bold;
-      padding-left: 10px;
+      padding-left: 2px;
     }
   }
 }
@@ -39,7 +43,7 @@ page-show-facture{
     .right-side{
       width:50%;
       float:left;
-      padding-left: 10px;
+      padding-left: 2px;
       font-weight: bold;
     }
   }

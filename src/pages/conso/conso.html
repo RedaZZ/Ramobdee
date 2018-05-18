@@ -23,42 +23,51 @@
       <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
-  <div *ngFor=" let conso of consos; let i=index " (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" class="conso-itm">
-    <button ion-item text-wrap >
-      <ion-label>
-        <div class="one-line">
-          <div class="left-side">Index</div>
-          <div class="right-side"> {{conso.VAL_IDX_CSO}} </div>
-        </div>
-        <div class="one-line">
-          <div class="left-side">Période</div>
-          <div class="right-side"> {{conso.PERIODE}}/{{conso.ANNEE}} </div>
-        </div>
-      </ion-label>
-    </button>
-      <ion-card *ngIf="isGroupShown(i)">
-        <ion-card-content>
+  <div *ngIf="isEmpty">
+    <ion-card>
+      <ion-card-content>
+        Pas de résultat pour ce contrat.
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!isEmpty">
+    <div *ngFor=" let conso of consos; let i=index " (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" class="conso-itm">
+      <button ion-item text-wrap >
+        <ion-label>
           <div class="one-line">
-            <div class="left-side">Date de la relève</div>
-            <div class="right-side"> {{conso.DAT_RELEVE}} </div>
+            <div class="left-side">Index</div>
+            <div class="right-side"> {{conso.VAL_IDX_CSO}} </div>
           </div>
           <div class="one-line">
-            <div class="left-side">Type relève</div>
-            <div class="right-side"> {{conso.TYPE_INDEX}} </div>
+            <div class="left-side">Période</div>
+            <div class="right-side"> {{conso.PERIODE}}/{{conso.ANNEE}} </div>
           </div>
-          <div class="one-line">
-            <div class="left-side">Nombre de jours</div>
-            <div class="right-side"> {{conso.NOMBRE_JOUR}} </div>
-          </div>
-          <div class="one-line">
-            <div class="left-side">Volume consommé</div>
-            <div class="right-side"> {{conso.VOL_CSO_EAU_CSO}} </div>
-          </div>
-          <div class="one-line">
-            <div class="left-side">Volume facturé</div>
-            <div class="right-side"> {{conso.VOL_FAC_EAU_CSO}} </div>
-          </div>
-        </ion-card-content>
-      </ion-card>
+        </ion-label>
+      </button>
+        <ion-card *ngIf="isGroupShown(i)">
+          <ion-card-content>
+            <div class="one-line">
+              <div class="left-side">Date de la relève</div>
+              <div class="right-side"> {{conso.DAT_RELEVE}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Type relève</div>
+              <div class="right-side"> {{conso.TYPE_INDEX}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Nombre de jours</div>
+              <div class="right-side"> {{conso.NOMBRE_JOUR}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Volume consommé</div>
+              <div class="right-side"> {{conso.VOL_CSO_EAU_CSO}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Volume facturé</div>
+              <div class="right-side"> {{conso.VOL_FAC_EAU_CSO}} </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+    </div>
   </div>
 </ion-content>

@@ -5,6 +5,9 @@ import { Auth} from '../auth/auth';
 import { PasswordForgot } from '../password-forgot/password-forgot';
 import { Http, Response } from '@angular/http';
 import { AuthService } from '../../providers/auth-service';
+import * as $ from 'jquery';
+
+
 
 @Component({
   selector: 'page-home',
@@ -87,6 +90,11 @@ export class HomePage implements OnInit {
 
   forgot(){
     this.navCtrl.push(PasswordForgot);
+  }
+
+  openLink(){
+    var url = "https://www.fatourati.ma/FatLite/ma/Radeema/formulaire?cid=01&fid=1010";
+    window.open(url, '_system');
   }
 
     // display Alert when user created or not

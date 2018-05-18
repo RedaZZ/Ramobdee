@@ -1,3 +1,29 @@
+.bar-button-default{
+  color:#F4AF13;
+}
+.toolbar-background, .button-default{
+  background-color: #81a327 ;
+}
+.button-outline{
+  border-color: #81a327 ;
+  color: #81a327 ;
+}
+.button-outline.activated{
+  background-color: #81a327 ;
+  color: #fff ;
+}
+.toolbar-title{
+  color: #fff ;
+}
+
+
+
+#right-arrow{
+  margin-left:10px;
+}
+.hidden{
+  display:none;
+}
 
 .activePageHighlight {
 	background-color: map-get($colors, light);
@@ -11,7 +37,9 @@
   font-weight: bold;
   width: 100%;
   text-align: center;
-  background-color: yellowgreen;
+  background-color: #81a327;
+  cursor:pointer;
+  color: #fff ;
 }
 
 // Spinner css code

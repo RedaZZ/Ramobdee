@@ -13,25 +13,33 @@
 <ion-content padding>
   <ion-item class="top-item">
     <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="echeance.objet" name="object">
-      <ion-option value="544870">544870-Eau</ion-option>
-      <ion-option value="544272">544272-Electricité</ion-option>
+    <ion-select [(ngModel)]="echeance.objet" name="object" (ionChange)="changeEcheance($event)" >
+      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
+    <div *ngIf="isEmpty">
+    <ion-card>
+      <ion-card-content>
+        Pas de echeances pour ce contrat.
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!isEmpty">
   <button ion-item text-wrap *ngFor=" let echeance of echeances" (click)="showEcheance(echeance)">
     <ion-label>
       <div class="one-line">
         <div class="left-side">N° Facilité</div>
-        <div class="right-side"> {{echeance.numeroFacilite}} </div>
+        <div class="right-side"> {{echeance.NUM_FPA}} </div>
       </div>
       <div class="one-line">
         <div class="left-side">Etat Facilité</div>
-        <div class="right-side"> {{echeance.etatFacilite}} </div>
+        <div class="right-side"> {{echeance.ETA_FPA}} </div>
       </div>
       <div class="one-line">
         <div class="left-side">Montant facilité</div>
-        <div class="right-side"> {{echeance.montantFacilite}} </div>
+        <div class="right-side"> {{echeance.MNT_FPA}} </div>
       </div>
     </ion-label>
   </button>
+  </div>
 </ion-content>

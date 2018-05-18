@@ -6,7 +6,6 @@
     <ion-title>{{"Accueil"| translate}}</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
   <div class="slides-container">
     <ion-slides pager="true">
@@ -37,15 +36,17 @@
       </div>
       <ion-card>
         <ion-card-content>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+         {{"home_msg_1"| translate}}
         </ion-card-content>
       </ion-card>
-      <form (ngSubmit)="sendContract()">
+    <!--   <form (ngSubmit)="sendContract()">
       <ion-item>
         <ion-input type="number" placeholder='{{"Numéro de contrat"| translate}}' [(ngModel)]="home.contract" name="contract"></ion-input>
-        <button item-right ion-button center text-cente default>{{"Valider"| translate}}</button>
+        <button item-right ion-button center text-cente default  (click)="openLink()">{{"Valider"| translate}}</button>
       </ion-item>
       </form>
+      -->
+    <button  ion-button text-center default block (click)="openLink()">{{"pay"| translate}}</button>
     </div>
     <div *ngIf=" choice==='2'">
       <div class="text-center">
@@ -74,8 +75,6 @@
         </form>
           <button ion-button center text-center default block (click)=goToRegister()>{{"Créer Compte"| translate}}</button>
       </div>
-
     </div>
   </div>
 </ion-content>
-

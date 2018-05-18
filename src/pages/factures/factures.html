@@ -1,15 +1,11 @@
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Mes factures</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
   <ion-item class="top-item">
     <ion-label floating>Type Contrat</ion-label>
@@ -17,24 +13,33 @@
       <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
-  <button ion-item text-wrap *ngFor=" let facture of factures" (click)="showFacture(facture)">
-    <ion-label>
-      <div class="one-line">
-        <div class="left-side">Numéro</div>
-        <div class="right-side"> {{facture.ID_FAC_CLI}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Période</div>
-        <div class="right-side"> {{facture.NUM_PER_TAR}}/{{facture.ANNNE}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Montant</div>
-        <div class="right-side"> {{facture.MNT_FAC}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Date d'exigibilité</div>
-        <div class="right-side"> {{facture.DAT_EXG}} </div>
-      </div>
-    </ion-label>
-  </button>
+  <div *ngIf="isEmpty">
+    <ion-card>
+      <ion-card-content>
+        Pas de factures pour ce contrat.
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!isEmpty">
+    <button ion-item text-wrap *ngFor=" let facture of factures" (click)="showFacture(facture)"   [ngClass]="(facture.SLD_ECR !== '0,00') ? 'impaye' : ''">
+      <ion-label>
+        <div class="one-line">
+          <div class="left-side">Numéro</div>
+          <div class="right-side"> {{facture.ID_FAC_CLI}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Période</div>
+          <div class="right-side"> {{facture.NUM_PER_TAR}}/{{facture.ANNNE}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Montant</div>
+          <div class="right-side"> {{facture.MNT_FAC}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Date d'exigibilité</div>
+          <div class="right-side"> {{facture.DAT_EXG}} </div>
+        </div>
+      </ion-label>
+    </button>
+  </div>
 </ion-content>

@@ -4,18 +4,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Paiement</ion-title>
+    <ion-title>{{'Paiement'| translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-card>
+<!--   <ion-card>
     <ion-card-content>
      Bienvenue {{customerName}}
     </ion-card-content>
-  </ion-card>
-  <ion-list>
+  </ion-card> -->
+  <button  ion-button text-center default block (click)="openLink()">{{"pay"| translate}}</button>
+<!--   <ion-list>
   <ion-item-divider>N contrat : {{contract}}</ion-item-divider>
   <ion-list-header>
     <ion-label>
@@ -34,9 +35,10 @@
       </ion-label>
       <ion-checkbox  [checked]="facture.checked" (ionChange)="getValue(facture, $event)" color="dark" disabled="false" item-end></ion-checkbox>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>
-<ion-footer>
+
+<!-- <ion-footer>
   <div padding>
     <h3>
       Montant total à payer : {{totalTTC}} DH
@@ -47,3 +49,4 @@
     </ion-item>
   </div>
 </ion-footer>
+ -->

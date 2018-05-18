@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Actualités</ion-title>
+    <ion-title>{{"actu"| translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,10 +11,10 @@
   <div padding>
     <ion-segment [(ngModel)]="actu">
       <ion-segment-button value="news">
-        News
+         {{"News"| translate}}
       </ion-segment-button>
       <ion-segment-button value="videos">
-        Videos
+         {{"Videos"| translate}}
       </ion-segment-button>
     </ion-segment>
   </div>

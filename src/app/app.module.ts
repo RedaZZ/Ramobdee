@@ -85,6 +85,7 @@ import { AuthService } from './../providers/auth-service';
       scrollAssist: true,
       autoFocusAssist: false*/
     }),
+
     HttpModule,
     JsonpModule,
 

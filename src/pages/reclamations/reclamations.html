@@ -1,9 +1,4 @@
-<!--
-  Generated template for the Reclamations page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -19,54 +14,42 @@
 <ion-content padding>
   <ion-item class="top-item">
     <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="reclamation.objet" name="object">
-      <ion-option value="544870">544870-Eau</ion-option>
-      <ion-option value="544272">544272-Electricité</ion-option>
+    <ion-select [(ngModel)]="reclamation.objet" name="object" (ionChange)="changeReclamation($event)" >
+      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
   <button ion-button type="button" block (click)="openModal()" class="btn-margin">Soumettre réclamation</button>
-  <ion-item>
-    <div class="one-line">
-      <div class="left-side">N° Réclamation</div>
-      <div class="right-side"> 909588 </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Date Réclamation</div>
-      <div class="right-side"> 11/07/2017 12:40 </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Etat Réclamation</div>
-      <div class="right-side"> En cours </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Type Réclamation</div>
-      <div class="right-side"> Demande une information sur la procédure d'abonnement </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Commentaire</div>
-      <div class="right-side"> Tel 065854221</div>
-    </div>
-  </ion-item>
-  <ion-item>
-    <div class="one-line">
-      <div class="left-side">N° Réclamation</div>
-      <div class="right-side"> 909588 </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Date Réclamation</div>
-      <div class="right-side"> 05/02/2017 12:40 </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Etat Réclamation</div>
-      <div class="right-side"> Cloturé </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Type Réclamation</div>
-      <div class="right-side"> Demande une information sur la procédure d'abonnement </div>
-    </div>
-    <div class="one-line">
-      <div class="left-side">Commentaire</div>
-      <div class="right-side"> Tel 065854221</div>
-    </div>
-  </ion-item>
+  <div *ngIf="isEmpty">
+    <ion-card>
+      <ion-card-content>
+        Pas de Reclamations pour ce contrat.
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!isEmpty">
+    <ion-item text-wrap *ngFor=" let reclamation of reclamations">
+      <ion-label>
+        <div class="one-line">
+          <div class="left-side">N° Réclamation</div>
+          <div class="right-side"> {{reclamation.ID_INT}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Date Réclamation</div>
+          <div class="right-side"> {{reclamation.DAT_LAN_INT}}</div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Etat Réclamation</div>
+          <div class="right-side"> {{reclamation.ETA_INT}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Type Réclamation</div>
+          <div class="right-side"> {{reclamation.LIB_TYP_WEB}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Commentaire</div>
+          <div class="right-side"> {{reclamation.CMT_LAN_INT}} </div>
+        </div>
+      </ion-label>
+    </ion-item>
+  </div>
 </ion-content>

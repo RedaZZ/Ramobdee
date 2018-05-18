@@ -17,11 +17,10 @@
 
 
 <ion-content padding>
-  <ion-item>
+  <ion-item class="top-item">
     <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="simulation.objet" name="object">
-      <ion-option value="544870">544870-Eau</ion-option>
-      <ion-option value="544272">544272-Electricité</ion-option>
+    <ion-select [(ngModel)]="simulation.cta" name="object" >
+      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
   <form #simulForm="ngForm"  (ngSubmit)="simulate()"  *ngIf="active" >

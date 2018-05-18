@@ -1,9 +1,4 @@
-<!--
-  Generated template for the Devis page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -19,29 +14,37 @@
 <ion-content padding>
   <ion-item class="top-item">
     <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="devis.objet" name="object">
-      <ion-option value="544870">544870-Eau</ion-option>
-      <ion-option value="544272">544272-Electricité</ion-option>
+    <ion-select [(ngModel)]="devis.objet" name="object" (ionChange)="changeDevis($event)" >
+      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
     </ion-select>
   </ion-item>
-  <ion-item text-wrap *ngFor=" let devis of deviss" >
-    <ion-label>
-      <div class="one-line">
-        <div class="left-side">N° </div>
-        <div class="right-side"> {{devis.numero}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Date</div>
-        <div class="right-side"> {{devis.date}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Montant TTC</div>
-        <div class="right-side"> {{devis.amount}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Commentaire</div>
-        <div class="right-side"> {{devis.comment}} </div>
-      </div>
-    </ion-label>
-  </ion-item>
+  <div *ngIf="isEmpty">
+    <ion-card>
+      <ion-card-content>
+        Pas de devis pour ce contrat.
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!isEmpty">
+    <ion-item text-wrap *ngFor=" let devis of deviss" >
+      <ion-label>
+        <div class="one-line">
+          <div class="left-side">N° </div>
+          <div class="right-side"> {{devis.NUM_DEV}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Date</div>
+          <div class="right-side"> {{devis.DAT_DEV}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Montant TTC</div>
+          <div class="right-side"> {{devis.MNT_TTC_DEV}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side">Commentaire</div>
+          <div class="right-side"> {{devis.CMT_DEV}} </div>
+        </div>
+      </ion-label>
+    </ion-item>
+  </div>
 </ion-content>

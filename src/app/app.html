@@ -8,14 +8,16 @@
   <ion-content>
     <ion-list>
       <button [class.activePageHighlight]="checkActive(p)" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+        {{p.title| translate}}
       </button>
     </ion-list>
     <div class="menu-title">Espace Client</div>
-    <ion-list>
-      <button [class.activePageHighlight]="checkActive(p)" menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
-        {{p.title}}
+    <ion-list >
+      <span  *ngFor="let p of pages2" (click)="openPage(p)" >
+      <button [class.activePageHighlight]="checkActive(p)" *ngIf="p.title != 'Inscription' || !currentUser() && p.title == 'Inscription'"  menuClose ion-item>
+        {{p.title| translate}}
       </button>
+      </span>
     </ion-list>
   </ion-content>
 

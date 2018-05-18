@@ -19,26 +19,54 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Choisir votre contrat</ion-label>
-      <ion-select [(ngModel)]="reclamation.contrat" name="contrat" class="form-control" required>
-        <ion-option value="544870">544870-Eau</ion-option>
-        <ion-option value="544272">544272-Electricité</ion-option>
+      <ion-select [(ngModel)]="reclamation.contrat" name="contrat" class="form-control" required >
+        <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label floating>Choisir Origine</ion-label>
-      <ion-select [(ngModel)]="reclamation.services" name="services" class="form-control" required>
-        <ion-option value="RECLAMATION CLIENT">RECLAMATION CLIENT</ion-option>
-        <ion-option value="INFORMATION CLIENT">INFORMATION CLIENT</ion-option>
+      <ion-select [(ngModel)]="reclamation.services" name="services" (ionChange)="onChange(reclamation.services)" class="form-control" required>
+        <ion-option value="RC">RECLAMATION CLIENT</ion-option>
+        <ion-option value="IF">INFORMATION CLIENT</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label floating>Choisir Type</ion-label>
-      <ion-select [(ngModel)]="reclamation.type" name="type" class="form-control" required>
-        <ion-option value="INFO GENERALE">Demande une information générale</ion-option>
-        <ion-option value="INFO PROCEDURE">Demande une information sur la procédure de branchement</ion-option>
-        <ion-option value="INFO ABONNEMENT">Demande une information sur la procédure d'abonnement</ion-option>
-      </ion-select>
-    </ion-item>
+    <div *ngIf='!isInfo'>
+      <ion-item>
+        <ion-label floating>Choisir Type</ion-label>
+        <ion-select [(ngModel)]="reclamation.type" name="type" class="form-control" required>
+          <ion-option value="L4|FC">1-Contestation de la facture eau</ion-option>
+          <ion-option value="M2|FV">2-Demande de vidange de la fosse sceptique</ion-option>
+          <ion-option value="L9|RC">3-Demander la refection du chaussee</ion-option>
+          <ion-option value="M2|RC">4-Demander la refection du chaussee</ion-option>
+          <ion-option value="V1|CL">5-Demander une contre lecture du compteur d'eau</ion-option>
+          <ion-option value="M2|MT">6-Signaler l'absence du  tampon assainissement</ion-option>
+          <ion-option value="M2|OD">7-Signaler un probleme d'Odeurs desagreables issues du reseau assainissement</ion-option>
+          <ion-option value="M2|DA">8-Signaler un probleme de debordement du reseau assainissement</ion-option>
+          <ion-option value="L3|NR">9-Signaler un probleme de non reception de la facture d'eau</ion-option>
+          <ion-option value="L9|MQ">10-Signaler un probleme de qualite eau</ion-option>
+          <ion-option value="L9|FB">11-Signaler une Fuite au branchement eau</ion-option>
+          <ion-option value="M2|FR">12-Signaler une Fuite au niveau du reseau assainissement</ion-option>
+          <ion-option value="L9|CP">13-Signaler une chute de la pression d'eau</ion-option>
+          <ion-option value="L9|CE">14-Signaler une coupure d'eau</ion-option>
+          <ion-option value="X1|FB">15-Signaler une fraude de branchement direct au reseau d'eau</ion-option>
+          <ion-option value="X1|FC">16-Signaler une fraude sur le compteur d'eau</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div *ngIf='isInfo'>
+      <ion-item>
+        <ion-label floating>Choisir Type</ion-label>
+        <ion-select [(ngModel)]="reclamation.type" name="type" class="form-control" required>
+          <ion-option value="K1|HO">Demande une information sur la procedure de branchement sur les horaires d'ouverture</ion-option>
+          <ion-option value="K1|IR">Demande une information sur la procedure de branchement sur la procedure de resiliation</ion-option>
+          <ion-option value="K1|PD">Demande une information generale </ion-option>
+          <ion-option value="K1|IP">Demande une information sur la procedure de branchement sur la pose du compteur</ion-option>
+          <ion-option value="K1|IA">Demande une information sur la procedure d'abonnement</ion-option>
+          <ion-option value="K1|IB">Demande une information sur la procedure de branchement</ion-option>
+          <ion-option value="K1|ID">Demande une information sur la procedure de domiciliation bancaire</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
     <ion-item>
       <ion-label floating>Commentaires</ion-label>
       <ion-textarea [(ngModel)]="reclamation.comment" name="comment"></ion-textarea>
