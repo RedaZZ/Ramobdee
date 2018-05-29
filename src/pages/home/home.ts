@@ -1,4 +1,4 @@
-import { NavController, LoadingController, AlertController} from 'ionic-angular';
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import {Component, OnInit} from '@angular/core'
 import { Payment} from '../payment/payment';
 import { Auth} from '../auth/auth';
@@ -6,7 +6,7 @@ import { PasswordForgot } from '../password-forgot/password-forgot';
 import { Http, Response } from '@angular/http';
 import { AuthService } from '../../providers/auth-service';
 import * as $ from 'jquery';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @Component({
@@ -28,7 +28,8 @@ export class HomePage implements OnInit {
   userName: string;
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController,
-   public loadingCtrl: LoadingController, private http: Http, private auth: AuthService) {
+   public loadingCtrl: LoadingController, private http: Http, private auth: AuthService,
+   private iab: InAppBrowser) {
 
     let info = JSON.parse(this.auth.getUserInfo()) ;
     console.log("-------"+info);
@@ -37,6 +38,8 @@ export class HomePage implements OnInit {
     if (info && info["nom"] !== "undefined") {
       this.userName = info["nom"]+" "+info["prenom"];
     }
+
+
   };
 
   login(){
@@ -46,6 +49,7 @@ export class HomePage implements OnInit {
     if (login && password) {
       this.auth.login({email:login, password:password}).subscribe(allowed => {
         if (allowed) {
+          this.presentAlert("Veuillez cliquer sur le menu pour accéder aux différentes options");
           this.navCtrl.setRoot(this.navCtrl.getActive().component);
         } else {
           console.log("Access Denied");
@@ -94,13 +98,13 @@ export class HomePage implements OnInit {
 
   openLink(){
     var url = "https://www.fatourati.ma/FatLite/ma/Radeema/formulaire?cid=01&fid=1010";
-    window.open(url, '_system');
+    this.iab.create(url,"_system", "location=yes");
   }
 
     // display Alert when user created or not
   presentAlert(content:any) {
     let alert = this.alertCtrl.create({
-      title: 'Authentification',
+      title: 'Bienvenue',
       subTitle: content,
       buttons: ['Ok']
     });

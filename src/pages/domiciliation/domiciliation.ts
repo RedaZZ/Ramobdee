@@ -43,7 +43,7 @@ export class Domiciliation {
     var url = "https://radeema.ma/api/jsonws/WsForMob-portlet.wsmob/envoyerDomicilBanc/id/"+id_usr+"/tit/"+tit+"/adr/"+adr+"/gui/"+gui+"/no_tel/"+no_tel+"/pce_idt/"+pce_idt+"/cod_bnk/"+cod_bnk+"/rib/"+rib;
 
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     loading.present();

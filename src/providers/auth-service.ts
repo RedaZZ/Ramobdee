@@ -41,7 +41,7 @@ export class AuthService {
       return Observable.create(observer => {
         // init loading spinner
         let loading = this.loadingCtrl.create({
-          content: 'Please wait...'
+          content: 'Merci de patienter...'
         });
 
         // Api call start

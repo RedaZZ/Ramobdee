@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, ModalController, AlertController, LoadingController} from 'ionic-angular';
 import { Http, Response } from '@angular/http';
 import { ConditionPage } from '../auth/conditions';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -57,7 +58,7 @@ export class Auth {
   register(){
      // init loading spinner
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     console.log("register");
@@ -111,6 +112,7 @@ export class Auth {
           console.log(error);
         });
         this.presentAlert("Vieuillez valider votre inscription en cliquant sur le lien reçu par Email");
+        this.navCtrl.setRoot(HomePage);
       }
       console.log("step 2");
 /*      this.results = data;*/
@@ -133,7 +135,7 @@ export class Auth {
   // display Alert when user created or not
   presentAlert(content:any) {
     let alert = this.alertCtrl.create({
-      title: 'Message Info',
+      title: 'Création compte',
       subTitle: content,
       buttons: ['Ok']
     });

@@ -44,7 +44,7 @@ export class Echeances {
 
   getMesEcheances(cta) {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     loading.present();

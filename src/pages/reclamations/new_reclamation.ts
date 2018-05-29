@@ -46,7 +46,7 @@ export class FormPage {
     var url = "https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/creat-intervention/id_usr/"+id_usr+"/num_cta/"+num_cta+"/cod_typ_int/"+cod_typ_int+"/cod_fam_int/"+cod_fam_int+"/cod_ori_int/"+cod_ori_int+"/cmt/"+cmt;
 
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     this.http.get(url).map((res:Response) => res.json())

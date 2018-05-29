@@ -36,7 +36,7 @@ export class Payment {
 
   retrievefactures() {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     loading.present();

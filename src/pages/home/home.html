@@ -8,12 +8,15 @@
 </ion-header>
 <ion-content padding>
   <div class="slides-container">
-    <ion-slides pager="true">
+    <ion-slides pager="true" autoplay="4000" loop="true" speed="2000">
       <ion-slide>
-        <img src="assets/images/step.jpg" />
+        <img src="assets/images/image_1.jpg" height="250px"/>
       </ion-slide>
       <ion-slide>
-        <img src="assets/images/radeema.jpg" />
+        <img src="assets/images/image_2.jpg" height="250px"/>
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/images/image_3.jpg" height="250px"/>
       </ion-slide>
     </ion-slides>
   </div>
@@ -21,36 +24,27 @@
     <button ion-item (click)=" choice = '1'; first = '0' ">
       <ion-icon name="card" item-left></ion-icon>
         {{"Paiement Direct"| translate}}
-      <ion-icon name="arrow-dropright-circle" item-right></ion-icon>
+      <ion-icon name="arrow-dropright" item-right></ion-icon>
     </button>
     <button ion-item (click)=" choice = '2'; first = '0' ">
       <ion-icon name="person" item-left></ion-icon>
         {{"Accès Client"| translate}}
-      <ion-icon name="arrow-dropright-circle" item-right></ion-icon>
+      <ion-icon name="arrow-dropright" item-right></ion-icon>
     </button>
   </ion-list>
   <div *ngIf=" first === '0' ">
     <div  *ngIf=" choice === '1' ">
+
       <div class="text-center">
-        <button ion-button center text-center outline (click)=" first = '1'">{{"Paiement"| translate}}</button>
+        <button ion-button center text-center outline (click)=" first = '1'">{{"Accueil"| translate}}</button>
       </div>
-      <ion-card>
-        <ion-card-content>
-         {{"home_msg_1"| translate}}
-        </ion-card-content>
-      </ion-card>
-    <!--   <form (ngSubmit)="sendContract()">
-      <ion-item>
-        <ion-input type="number" placeholder='{{"Numéro de contrat"| translate}}' [(ngModel)]="home.contract" name="contract"></ion-input>
-        <button item-right ion-button center text-cente default  (click)="openLink()">{{"Valider"| translate}}</button>
-      </ion-item>
-      </form>
-      -->
-    <button  ion-button text-center default block (click)="openLink()">{{"pay"| translate}}</button>
+
+      <button  ion-button text-center default block (click)="openLink()">{{"pay"| translate}}</button>
+
     </div>
     <div *ngIf=" choice==='2'">
       <div class="text-center">
-        <button ion-button center text-center outline (click)=" first = '1'">{{"Accès Client"| translate}}</button>
+        <button ion-button center text-center outline (click)=" first = '1'">{{"Accueil"| translate}}</button>
       </div>
       <div  *ngIf=" userName " class="card width100">
         <p>Bienvenue {{userName}} </p> <br>
@@ -60,18 +54,18 @@
         <form (ngSubmit)="login()">
           <ion-list class="card width100">
             <ion-item>
-             <ion-input type="email" placeholder='{{"Identifiant"| translate}}' name="login" [(ngModel)]="user.login"></ion-input>
+             <ion-input type="email" placeholder='{{"email"| translate}}' name="login" [(ngModel)]="user.login"></ion-input>
             </ion-item>
             <ion-item>
-             <ion-input type="password" placeholder='{{"Mot de passe"| translate}}' name="password" [(ngModel)]="user.password"></ion-input>
+             <ion-input type="password" placeholder='{{"password"| translate}}' name="password" [(ngModel)]="user.password"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>{{"Mémoriser"| translate}}</ion-label>
               <ion-checkbox color="dark" checked="true"></ion-checkbox>
             </ion-item>
           </ion-list>
-          <div class="link-login" (click)="forgot()"><a>{{"Mot de passe oublié?"| translate}}</a></div>
-          <button ion-button center text-center default block type="submit">{{"Valider"| translate}}</button>
+<!--           <div class="link-login" (click)="forgot()"><a>{{"Mot de passe oublié?"| translate}}</a></div> -->
+          <button ion-button center text-center default block type="submit">{{"valider"| translate}}</button>
         </form>
           <button ion-button center text-center default block (click)=goToRegister()>{{"Créer Compte"| translate}}</button>
       </div>

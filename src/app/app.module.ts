@@ -33,13 +33,18 @@ import { ConditionPage } from '../pages/auth/conditions';
 import { Abonnement } from '../pages/abonnement/abonnement';
 import { AlertPage } from '../pages/domiciliation/alert';
 import { PasswordForgot } from '../pages/password-forgot/password-forgot';
+import { AssocierContrat } from '../pages/associer-contrat/associer-contrat';
+import { MesContrats } from '../pages/mes-contrats/mes-contrats';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+//translation
 import { TranslateService }   from './translate/translate.service';
 import { TranslatePipe }   from './translate/translate.pipe';
 import { TRANSLATION_PROVIDERS}   from './translate/translation';
+//external link
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 //Login
 import { AuthService } from './../providers/auth-service';
@@ -59,6 +64,8 @@ import { AuthService } from './../providers/auth-service';
     Contact,
     showDataPage,
     Settings,
+    AssocierContrat,
+    MesContrats,
     Factures,
     showFacturePage,
     Echeances,
@@ -85,7 +92,6 @@ import { AuthService } from './../providers/auth-service';
       scrollAssist: true,
       autoFocusAssist: false*/
     }),
-
     HttpModule,
     JsonpModule,
 
@@ -103,6 +109,8 @@ import { AuthService } from './../providers/auth-service';
     Contact,
     showDataPage,
     Settings,
+    AssocierContrat,
+    MesContrats,
     Factures,
     showFacturePage,
     Echeances,
@@ -127,6 +135,7 @@ import { AuthService } from './../providers/auth-service';
     CallNumber,
     TRANSLATION_PROVIDERS, TranslateService,
     AuthService,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

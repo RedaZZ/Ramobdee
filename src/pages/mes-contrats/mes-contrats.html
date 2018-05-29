@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{"MesContrats" | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div padding>
+    <ion-segment [(ngModel)]="client">
+      <ion-segment-button value="contrats">
+         {{"Mes contrats"| translate}}
+      </ion-segment-button>
+      <ion-segment-button value="recap">
+         {{"Mon compte client"| translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="client">
+    <ion-list *ngSwitchCase="'contrats'">
+      <ion-item text-wrap *ngFor=" let contrat of contrats">
+        <ion-label>
+          <div class="one-line">
+            <div class="left-side">N° Contrat</div>
+            <div class="right-side"> {{contrat["num_ct"]}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side">Service</div>
+            <div class="right-side"> {{contrat["type"]}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side">N° Client</div>
+            <div class="right-side"> {{contrat["num_client"]}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side">Client</div>
+            <div class="right-side"> {{contrat["nom_client"]}} </div>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'recap'">
+      <ion-item class="top-item">
+        <ion-label floating>Type Contrat</ion-label>
+        <ion-select [(ngModel)]="compte.objet" name="object" (ionChange)="changeRecap($event)" >
+          <ion-option  *ngFor=" let cta of contrats; let i=index " [value]="cta.num_ct" [selected]="cta.num_ct == this.defaultCta">{{cta.num_ct}}-{{cta.type}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="recap_compte !== undefined">
+      <ion-item text-wrap >
+          <ion-label>
+            <div class="one-line">
+              <div class="left-side">Montant impayés</div>
+              <div class="right-side"> {{recap_compte.impayes}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Montant exigible</div>
+              <div class="right-side"> {{recap_compte.mt_exigible}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Crédit sur mon compte</div>
+              <div class="right-side"> {{recap_compte.credit}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">Provision</div>
+              <div class="right-side"> {{recap_compte.provision}} </div>
+            </div>
+          </ion-label>
+      </ion-item>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

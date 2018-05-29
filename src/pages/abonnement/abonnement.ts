@@ -25,7 +25,7 @@ export class Abonnement {
     // heck if tournée correct
 
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     if (number === 2) {
@@ -71,7 +71,7 @@ export class Abonnement {
 
   sendForm(){
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     var user = JSON.parse(this.auth.getUserInfo()) ;

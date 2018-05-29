@@ -41,7 +41,7 @@ export class Simulation {
   simulate(){
     console.log(this.simulation);
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     var cta = this.simulation["cta"];

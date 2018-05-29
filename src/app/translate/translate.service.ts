@@ -7,6 +7,9 @@ export class TranslateService {
 
     public get currentLang() {
         let locale = localStorage.getItem('appLang');
+        if (!locale || locale === "") {
+            locale = "fr";
+        }
         return locale;
     }
 

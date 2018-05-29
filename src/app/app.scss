@@ -1,3 +1,14 @@
+.alert-ios .alert-title {
+    font-size: 19px;
+}
+.alert-sub-title {
+  font-size: 16px !important;
+}
+.alert-wrapper{
+  max-width:80% !important;
+  margin: 0 auto;
+}
+
 .bar-button-default{
   color:#F4AF13;
 }
@@ -15,8 +26,6 @@
 .toolbar-title{
   color: #fff ;
 }
-
-
 
 #right-arrow{
   margin-left:10px;

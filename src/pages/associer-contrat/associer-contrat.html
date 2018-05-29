@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{"AssocierContrat"| translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form #authForm3="ngForm" >
+    <ion-item>
+      <ion-label floating>Numéro de contrat </ion-label>
+      <ion-input type="number" [(ngModel)]="contracts.contrat" name="contrat" class="form-control" required #name="ngModel" ></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label floating>Service</ion-label>
+      <ion-select [(ngModel)]="contracts.service" name="service" class="form-control" required #name="ngModel">
+        <ion-option value="EA" selected="selected">Eau</ion-option>
+        <ion-option value="BT">Electricité</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button type="button" block class="btn-margin" (click)="addContrat()" [disabled]="!authForm3.form.valid">Ajouter</button>
+  </form>
+</ion-content>

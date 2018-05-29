@@ -43,7 +43,7 @@ export class Conso {
 
   getMaConso(ctaNum) {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     loading.present();

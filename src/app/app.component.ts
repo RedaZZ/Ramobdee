@@ -12,6 +12,7 @@ import { Reseau } from '../pages/reseau/reseau';
 import { showDataPage } from '../pages/reseau/show';
 import { Contact } from '../pages/contact/contact';
 import { Settings } from '../pages/settings/settings';
+import { AssocierContrat } from '../pages/associer-contrat/associer-contrat';
 import { Factures } from '../pages/factures/factures';
 import { Echeances } from '../pages/echeances/echeances';
 import { showEcheancePage} from '../pages/echeances/show-echeance';
@@ -31,6 +32,7 @@ import { PasswordForgot } from '../pages/password-forgot/password-forgot';
 import { AuthService } from '../providers/auth-service';
 import { TranslateService }   from './translate/translate.service';
 import { Events } from 'ionic-angular';
+import { MesContrats } from '../pages/mes-contrats/mes-contrats';
 
 /*import {NglModule} from 'ng-lightning/ng-lightning';
 import { LoaderService } from './loader.service';*/
@@ -69,6 +71,8 @@ export class MyApp {
       { title: 'params', component: Settings, needAuth: false }
     ];
     this.pages2 = [
+      { title: 'AssocierContrat', component: AssocierContrat, needAuth: true },
+      { title: 'MesContrats', component: MesContrats, needAuth: true },
       { title: 'Mes Factures', component: Factures, needAuth: true },
       { title: 'Echéance', component: Echeances, needAuth: true },
       { title: 'Historique consommation', component: Conso, needAuth: true },

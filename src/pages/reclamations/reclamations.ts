@@ -29,6 +29,7 @@ export class Reclamations {
       ctaArray.forEach((cta, index) => {
         this.http.get('https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/'+cta).map((res:Response) => res.json())
         .subscribe(data => {
+          console.log(data);
           var result = data.split("|");
           array.push({'num':result[0], 'type':result[3]});
         });
@@ -47,7 +48,7 @@ export class Reclamations {
     var id = user["id"];
 
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Merci de patienter...'
     });
 
     loading.present();
