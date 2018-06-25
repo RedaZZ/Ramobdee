@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{kind}}</ion-title>
+    <ion-title>{{kind | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -26,9 +26,9 @@
     </ion-card>
   </div>
   <div *ngIf=" kind !== 'Agence'">
-    <div class="map-container">
-      <div #map id="map"></div>
-    </div>
+    <ion-avatar item-start>
+      <img src="assets/images/{{kind}}.png" style="margin: 0 auto;">
+    </ion-avatar>
     <ion-card>
       <ion-item>
         <ion-icon name="navigate" item-start large></ion-icon>

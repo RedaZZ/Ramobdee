@@ -1,19 +1,15 @@
-
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>CONDITIONS GENERALES D'UTILISATION </ion-title>
+    <ion-title> {{"conditions"| translate}} </ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-card>
     <div [innerHTML] = "htmlConditions"></div>
   </ion-card>
-  <button ion-button block type="button" color="red" (click)=closeModal()>Accepter</button>
+  <button ion-button block type="button" color="red" (click)=closeModal()> {{"accept"| translate}} </button>
 </ion-content>

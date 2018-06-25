@@ -13,13 +13,13 @@
 <ion-content padding>
   <ion-segment [(ngModel)]="reseau">
     <ion-segment-button value="agence">
-       {{"Agences"| translate}}
+       {{"agences"| translate}}
     </ion-segment-button>
     <ion-segment-button value="espace">
-       {{"Espaces services"| translate}}
+       {{"espaces"| translate}}
     </ion-segment-button>
     <ion-segment-button value="gab">
-       {{"Gab"| translate}}
+       {{"gab"| translate}}
     </ion-segment-button>
   </ion-segment>
 
@@ -39,10 +39,10 @@
     <ion-list padding *ngSwitchCase="'espace'">
       <ion-segment [(ngModel)]="espace">
         <ion-segment-button value="tashilat">
-           {{"Tasshilat"| translate}}
+           {{"tasshilat" | translate}}
         </ion-segment-button>
         <ion-segment-button value="fawatir">
-           {{"Fawatir"| translate}}
+           {{"fawatir" | translate}}
         </ion-segment-button>
       </ion-segment>
       <div [ngSwitch]="espace">
@@ -50,7 +50,7 @@
         <ion-searchbar (input)="searchEspace($event)"></ion-searchbar>
           <button ion-item (click)='showData(tashilat, "Tasshilat")' *ngFor=" let tashilat of tashilats ">
             <ion-avatar item-start>
-              <img src="assets/images/tasshilat.png">
+              <img src="assets/images/Tasshilat.png">
             </ion-avatar>
             <h2>{{tashilat.name}}</h2>
             <h3>{{tashilat.adress}}</h3>
@@ -60,7 +60,7 @@
         <ion-searchbar (input)="searchFawatir($event)"></ion-searchbar>
           <button ion-item (click)='showData(fawatir, "Fawatir")' *ngFor=" let fawatir of fawatirs ">
             <ion-avatar item-start>
-              <img src="assets/images/fawatir.png">
+              <img src="assets/images/Fawatir.png">
             </ion-avatar>
             <h2>{{fawatir.name}}</h2>
             <h3>{{fawatir.adress}}</h3>
@@ -73,7 +73,7 @@
       <ion-searchbar (input)="searchGab($event)"></ion-searchbar>
       <button ion-item (click)='showData(gab, "Gab")' *ngFor=" let gab of gabs ">
         <ion-avatar item-start>
-          <img src="assets/images/gab.jpg">
+          <img src="assets/images/Gab.png">
         </ion-avatar>
         <h2>{{gab.name}}</h2>
         <h3>{{gab.adress}}</h3>

@@ -2,10 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Reclamations</ion-title>
+    <ion-title>{{"add_recl" | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -14,17 +11,17 @@
 <ion-content padding>
 <form #reclamForm="ngForm"  *ngIf="active" (ngSubmit)="submitReclamation()">
     <ion-item>
-      <ion-label floating>Telephone de contact</ion-label>
-      <ion-input type="tel" [(ngModel)]="reclamation.tel" name="tel" class="form-control" required></ion-input>
+      <ion-label floating> {{"tel_recl" | translate}} </ion-label>
+      <ion-input type="tel" [(ngModel)]="reclamation.tel" name="tel" class="form-control" required pattern="[0-9]*" minlength="10" maxlength="10"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Choisir votre contrat</ion-label>
+      <ion-label floating> {{"choose_cta" | translate}} </ion-label>
       <ion-select [(ngModel)]="reclamation.contrat" name="contrat" class="form-control" required >
         <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label floating>Choisir Origine</ion-label>
+      <ion-label floating> {{"choose_origin" | translate}} </ion-label>
       <ion-select [(ngModel)]="reclamation.services" name="services" (ionChange)="onChange(reclamation.services)" class="form-control" required>
         <ion-option value="RC">RECLAMATION CLIENT</ion-option>
         <ion-option value="IF">INFORMATION CLIENT</ion-option>
@@ -32,8 +29,8 @@
     </ion-item>
     <div *ngIf='!isInfo'>
       <ion-item>
-        <ion-label floating>Choisir Type</ion-label>
-        <ion-select [(ngModel)]="reclamation.type" name="type" class="form-control" required>
+        <ion-label floating> {{"choose_type" | translate}} </ion-label>
+        <ion-select [(ngModel)]="reclamation.type" name="type" class="form-control" required >
           <ion-option value="L4|FC">1-Contestation de la facture eau</ion-option>
           <ion-option value="M2|FV">2-Demande de vidange de la fosse sceptique</ion-option>
           <ion-option value="L9|RC">3-Demander la refection du chaussee</ion-option>
@@ -55,7 +52,7 @@
     </div>
     <div *ngIf='isInfo'>
       <ion-item>
-        <ion-label floating>Choisir Type</ion-label>
+        <ion-label floating> {{"choose_type" | translate}} </ion-label>
         <ion-select [(ngModel)]="reclamation.type" name="type" class="form-control" required>
           <ion-option value="K1|HO">Demande une information sur la procedure de branchement sur les horaires d'ouverture</ion-option>
           <ion-option value="K1|IR">Demande une information sur la procedure de branchement sur la procedure de resiliation</ion-option>
@@ -68,10 +65,10 @@
       </ion-item>
     </div>
     <ion-item>
-      <ion-label floating>Commentaires</ion-label>
+      <ion-label floating>{{"msg_recl" | translate}}</ion-label>
       <ion-textarea [(ngModel)]="reclamation.comment" name="comment"></ion-textarea>
     </ion-item>
-    <button ion-button block type="submit" [disabled]="!reclamForm.form.valid">Envoyer</button>
+    <button ion-button block type="submit" [disabled]="!reclamForm.form.valid">{{"envoyer" | translate}}</button>
   </form>
-    <button ion-button block type="button" color="red" (click)=closeModal()>Fermer</button>
+    <button ion-button block type="button" color="red" (click)=closeModal()>{{"fermer" | translate}}</button>
 </ion-content>

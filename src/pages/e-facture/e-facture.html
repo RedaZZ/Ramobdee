@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{"eFacture" | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <div [innerHTML] = "'eFacture_msg' | translate"></div>
+    </ion-card-content>
+  </ion-card>
+  <form (ngSubmit)="abonner()" #factureForm="ngForm" >
+    <ion-list class="card width100">
+      <ion-item>
+        <ion-label floating> {{"email" | translate}} :</ion-label>
+        <ion-input type="text" [readonly]="isReadonly()" value="{{email}}" > </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap> {{"accepter_notif" | translate}} </ion-label>
+        <ion-checkbox [(ngModel)]="efacture.accept" #name="ngModel" color="dark" checked="false" name="accept" class="form-control" required> </ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <button ion-button center text-center default block type="submit" [disabled]="!factureForm.form.valid">{{"abonner"| translate}}</button>
+  </form>
+</ion-content>

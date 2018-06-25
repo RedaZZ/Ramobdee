@@ -1,73 +1,71 @@
-<!--
-  Generated template for the Conso page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Ma conso</ion-title>
+    <ion-title>{{"maConso" | translate}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-  <ion-item class="top-item">
-    <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="conso.objet" name="object" (ionChange)="changeConso($event)" >
-      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
-    </ion-select>
-  </ion-item>
-  <div *ngIf="isEmpty">
+  <div *ngIf='noCta'>
     <ion-card>
       <ion-card-content>
-        Pas de résultat pour ce contrat.
+        {{"no_cta_msg" | translate}}
       </ion-card-content>
     </ion-card>
   </div>
-  <div *ngIf="!isEmpty">
-    <div *ngFor=" let conso of consos; let i=index " (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" class="conso-itm">
-      <button ion-item text-wrap >
-        <ion-label>
-          <div class="one-line">
-            <div class="left-side">Index</div>
-            <div class="right-side"> {{conso.VAL_IDX_CSO}} </div>
-          </div>
-          <div class="one-line">
-            <div class="left-side">Période</div>
-            <div class="right-side"> {{conso.PERIODE}}/{{conso.ANNEE}} </div>
-          </div>
-        </ion-label>
-      </button>
-        <ion-card *ngIf="isGroupShown(i)">
-          <ion-card-content>
+  <div *ngIf='!noCta'>
+    <ion-item class="top-item">
+      <ion-label floating>{{"cta_type" | translate}}</ion-label>
+      <ion-select [(ngModel)]="conso.objet" name="object" (ionChange)="changeConso($event)" >
+        <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <div *ngIf="isEmpty">
+      <ion-card>
+        <ion-card-content>
+          {{"no_result" | translate}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="!isEmpty">
+    <button ion-button block type="button" color="red" (click)=openModal()>{{"visualiser" | translate}}</button>
+    <button ion-button block type="button" color="red" (click)=createPdf()>{{"export_pdf" | translate}}</button>
+      <div *ngFor=" let conso of consos">
+        <ion-item text-wrap >
+          <ion-label>
             <div class="one-line">
-              <div class="left-side">Date de la relève</div>
+              <div class="left-side">{{"index" | translate}}</div>
+              <div class="right-side"> {{conso.VAL_IDX_CSO}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">{{"period" | translate}}</div>
+              <div class="right-side"> {{conso.PERIODE}}/{{conso.ANNEE}} </div>
+            </div>
+            <div class="one-line">
+              <div class="left-side">{{"date_rel" | translate}}</div>
               <div class="right-side"> {{conso.DAT_RELEVE}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Type relève</div>
+              <div class="left-side">{{"type_rel" | translate}}</div>
               <div class="right-side"> {{conso.TYPE_INDEX}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Nombre de jours</div>
+              <div class="left-side">{{"nbr_jr" | translate}}</div>
               <div class="right-side"> {{conso.NOMBRE_JOUR}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Volume consommé</div>
+              <div class="left-side">{{"vol_cons" | translate}}</div>
               <div class="right-side"> {{conso.VOL_CSO_EAU_CSO}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Volume facturé</div>
+              <div class="left-side">{{"vol_fac" | translate}}</div>
               <div class="right-side"> {{conso.VOL_FAC_EAU_CSO}} </div>
             </div>
-          </ion-card-content>
-        </ion-card>
+          </ion-label>
+        </ion-item>
+      </div>
     </div>
   </div>
 </ion-content>

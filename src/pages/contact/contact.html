@@ -5,7 +5,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{'contact'| translate}}</ion-title>
+    <ion-title> {{'contact'| translate}} </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -14,29 +14,25 @@
 <ion-content padding>
   <ion-card>
     <ion-card-content>
-     Le Centre de Relation Clientèle RADEEMA est à votre disposition 24h/24 et 7j/7. <br>
-     Vos comentaires, suggestions et réclamations sont les bienvenus.
+     <div [innerHTML] = "'contact_message' | translate"></div>
     </ion-card-content>
   </ion-card>
   <div padding>
     <button ion-button full large color="light" (click)="callIt('0802000123')" >Appelez le 080 2000 123</button>
   </div>
-  <form (ngSubmit)="contactMe()">
+  <form #contactForm="ngForm" (ngSubmit)="contactMe()">
     <ion-item>
-      <ion-label floating>Nom & Prénom</ion-label>
-      <ion-input type="text" [(ngModel)]="contact.complete_name" name="complete_name"></ion-input>
+      <ion-label floating> {{'nom_prenom'| translate}} </ion-label>
+      <ion-input type="text" [(ngModel)]="contact.complete_name" name="complete_name" class="form-control" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="contact.email" name="email"></ion-input>
+      <ion-label floating> {{'email'| translate}} </ion-label>
+      <ion-input type="email" [(ngModel)]="contact.email" name="email" class="form-control"  pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required></ion-input>
     </ion-item>
-<!--     <ion-item>
-      <ion-label floating>Tel</ion-label>
-      <ion-input type="tel" [(ngModel)]="contact.tel" name="tel"></ion-input>
-    </ion-item> -->
+
     <ion-item>
-      <ion-label floating>Objet</ion-label>
-      <ion-select [(ngModel)]="contact.object" name="object">
+      <ion-label floating> {{'object'| translate}} </ion-label>
+      <ion-select [(ngModel)]="contact.object" name="object" class="form-control" required>
         <ion-option value="DEMANDE D'INFORMATIONS">Demande d'informations</ion-option>
         <ion-option value="RECLAMATION">Réclamation</ion-option>
         <ion-option value="OFFRE DE SERVICE">Offre de service</ion-option>
@@ -55,9 +51,9 @@
       </ion-select>
     </ion-item> -->
     <ion-item>
-      <ion-label floating>Détails</ion-label>
-      <ion-textarea [(ngModel)]="contact.details" name="details"></ion-textarea>
+      <ion-label floating> {{'details'| translate}} </ion-label>
+      <ion-textarea [(ngModel)]="contact.details" name="details" class="form-control" required></ion-textarea>
     </ion-item>
-    <button ion-button type="submit" block>Envoyer</button>
+    <button ion-button type="submit" block [disabled]="!contactForm.form.valid"> {{'envoyer'| translate}} </button>
   </form>
 </ion-content>

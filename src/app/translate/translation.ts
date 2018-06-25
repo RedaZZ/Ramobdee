@@ -9,7 +9,7 @@ import { LANG_FR_NAME, LANG_FR_TRANS } from './lang-fr';
 export const TRANSLATIONS = new OpaqueToken('translations');
 
 // all translations
-const dictionary = {
+export const dictionary = {
     [LANG_EN_NAME]: LANG_EN_TRANS,
     [LANG_AR_NAME]: LANG_AR_TRANS,
     [LANG_FR_NAME]: LANG_FR_TRANS,

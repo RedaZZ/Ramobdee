@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { Domiciliation } from './domiciliation';
+import { TranslateModule }   from '../../app/translate/translate.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { Domiciliation } from './domiciliation';
   ],
   imports: [
     IonicPageModule.forChild(Domiciliation),
+    TranslateModule
   ],
   exports: [
     Domiciliation

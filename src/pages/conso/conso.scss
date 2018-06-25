@@ -20,7 +20,7 @@ page-conso {
     }
   }
 
-  .conso-itm .item-inner{
+/*   .conso-itm .item-inner{
     background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' transform='rotate(90 5 10)'/></svg>") !important ;
     background-size: 18px 18px !important;
     background-repeat: no-repeat;
@@ -30,6 +30,18 @@ page-conso {
     background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' transform='rotate(270 5 10)'/></svg>") !important ;
     background-size: 18px 18px !important;
     background-repeat: no-repeat;
+  } */
+
+  .item-inner{
+    background-image:none !important;
+  }
+
+  .scroll-content {
+    background-color: map-get($colors, light);
+  }
+
+  ion-card-header {
+    font-weight: bold;
   }
 }
 

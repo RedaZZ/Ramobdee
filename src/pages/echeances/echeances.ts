@@ -16,13 +16,16 @@ export class Echeances {
   listCta: any;
   defaultCta: any;
   isEmpty: boolean;
+  noCta: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public loadingCtrl: LoadingController) {
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
-    this.defaultCta=ctaArray[0];
-    this.isEmpty = true;
+    if (!ctaArray) {
+      this.noCta = true;
+    }
 
-    if (ctaArray.length > 0) {
+    if (ctaArray && ctaArray.length > 0) {
+      this.defaultCta=ctaArray[0];
       var array = [];
 
       ctaArray.forEach((cta, index) => {
@@ -54,16 +57,15 @@ export class Echeances {
       loading.dismiss();
       console.log(data);
       this.echeances = data;
-      console.log("check empty");
       if (this.echeances[0].ERR_COD !=="007") {
         this.isEmpty = false;
+      }else{
+        this.isEmpty = true;
       }
     });
   }
 
   changeEcheance(e:any){
-    console.log("change echeance");
-    this.isEmpty = true;
     this.echeances = this.getMesEcheances(this.echeance["objet"]);
   }
 

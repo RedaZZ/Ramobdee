@@ -5,7 +5,8 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { AuthService } from '../../providers/auth-service';
-
+import { BrowserTab } from '@ionic-native/browser-tab';
+/*import { TranslateService }   from '../../app/translate/translate.service';*/
 
 @Component({
   selector: 'page-payment',
@@ -18,11 +19,16 @@ export class Payment {
   contract: any;
   customerName: any;
   totalTTC:any;
-
+/*  payment:string;
+  pay:string;
+*/
   @ViewChild('allCheckbox') allCheckbox ;
 
   constructor( private http: Http,  public navParams: NavParams,
-              public navCtrl: NavController, public loadingCtrl: LoadingController) {
+              public navCtrl: NavController, public loadingCtrl: LoadingController,
+              private browserTab: BrowserTab) {
+/*    var payment = translate.instant('payment');
+    var pay = translate.instant('pay');*/
 /*    this.contract = navParams.get("contract");
     this.totalTTC = 0;
     this.factures = this.retrievefactures();
@@ -99,6 +105,15 @@ export class Payment {
 
   openLink(){
     var url = "https://www.fatourati.ma/FatLite/ma/Radeema/formulaire?cid=01&fid=1010";
-    window.open(url, '_system');
+
+    this.browserTab.isAvailable().then((isAvailable: boolean) => {
+      if(isAvailable) {
+        this.browserTab.openUrl(url);
+      } else {
+        // if custom tabs are not available you may  use InAppBrowser
+        console.log("custom not available");
+        window.open(url, '_system');
+      }
+    });
   }
 }

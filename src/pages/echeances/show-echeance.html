@@ -1,12 +1,10 @@
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Détails Echéance</ion-title>
+    <ion-title> {{"echeance_detail" | translate}} </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -14,15 +12,15 @@
   <ion-card>
     <ion-card-content>
       <div class="one-line">
-        <div class="left-side">N° Facilité</div>
+        <div class="left-side"> {{"num_faci" | translate}} </div>
         <div class="right-side"> {{numeroFacilite}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Etat Facilité</div>
+        <div class="left-side"> {{"etat_faci" | translate}} </div>
         <div class="right-side"> {{etatFacilite}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Montant facilité</div>
+        <div class="left-side"> {{"mnt_faci" | translate}} </div>
         <div class="right-side"> {{montantFacilite}} </div>
       </div>
     </ion-card-content>
@@ -30,19 +28,19 @@
   <ion-item text-wrap *ngFor=" let facilite of facilites">
     <ion-label>
       <div class="one-line">
-        <div class="left-side">Ordre Echéance</div>
+        <div class="left-side"> {{"ordre_ech" | translate}} </div>
         <div class="right-side"> {{facilite.NUM_ORD_ECH}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Montant Echéance</div>
+        <div class="left-side"> {{"mnt_ech" | translate}} </div>
         <div class="right-side"> {{facilite.MNT_ECH}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Date Echéance</div>
+        <div class="left-side"> {{"date_ech" | translate}} </div>
         <div class="right-side"> {{facilite.DATE_ECH}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Etat Echéance</div>
+        <div class="left-side"> {{"etat_ech" | translate}} </div>
         <div class="right-side"> {{facilite.ETA_ECH}} </div>
       </div>
     </ion-label>

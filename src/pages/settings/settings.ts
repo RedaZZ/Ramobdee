@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
 import { TranslateService }   from '../../app/translate/translate.service';
 import { Events } from 'ionic-angular';
+import { EventEmitter } from '@angular/core';
 
 @IonicPage()
 @Component({
@@ -11,13 +12,15 @@ import { Events } from 'ionic-angular';
 export class Settings {
   language:any;
   active=true;
+  public langChanged = new EventEmitter();
 
   public translatedText: string;
   public supportedLanguages: any[];
 /*  currentLang: string;*/
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private _translate: TranslateService, public events: Events) {
+              private _translate: TranslateService, public event: Events,
+              public loadingCtrl: LoadingController) {
     let locale = localStorage.getItem('appLang');
     this.language = locale;
   }
@@ -28,7 +31,7 @@ export class Settings {
 
   changeLang(){
     localStorage.setItem('appLang', this.language);
-
+    this.event.publish('lang.changed', this.language);
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
@@ -41,22 +44,16 @@ export class Settings {
 
     // set current langage
     let locale = localStorage.getItem('appLang');
-    var currentLang = locale || "fr";
+    var currentLang = locale || 'fr';
     this.selectLang(currentLang);
   }
 
-    isCurrentLang(lang: string) {
-      return lang === this._translate.currentLang;
-    }
+  selectLang(lang: string) {
+    // set current lang;
+    this._translate.use(lang);
+  }
 
-    selectLang(lang: string) {
-      // set current lang;
-      this._translate.use(lang);
-      /*this.refreshText();*/
-    }
-
-    refreshText() {
-      // refresh translation when language change
-      this.translatedText = this._translate.instant('hello world');
-    }
+  isCurrentLang(lang: string) {
+    return lang === this._translate.currentLang;
+  }
 }

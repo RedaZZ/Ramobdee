@@ -15,10 +15,6 @@ export class showFacturePage{
   public listEcr;
   public typeFacture;
   public solde;
-/*  public amountDone;
-  public regulationType;
-  public regulationMode;
-  public regulationDate;*/
 
   constructor(public navCtrl: NavController, public navParams: NavParams ){
     console.log(navParams);

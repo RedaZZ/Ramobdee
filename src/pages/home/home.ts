@@ -1,4 +1,4 @@
-import { NavController, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, Platform} from 'ionic-angular';
 import {Component, OnInit} from '@angular/core'
 import { Payment} from '../payment/payment';
 import { Auth} from '../auth/auth';
@@ -7,6 +7,7 @@ import { Http, Response } from '@angular/http';
 import { AuthService } from '../../providers/auth-service';
 import * as $ from 'jquery';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
 
 @Component({
@@ -29,10 +30,9 @@ export class HomePage implements OnInit {
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController,
    public loadingCtrl: LoadingController, private http: Http, private auth: AuthService,
-   private iab: InAppBrowser) {
+   public platform: Platform, private iab: InAppBrowser, private browserTab: BrowserTab) {
 
     let info = JSON.parse(this.auth.getUserInfo()) ;
-    console.log("-------"+info);
 
     this.userName =null;
     if (info && info["nom"] !== "undefined") {
@@ -63,14 +63,7 @@ export class HomePage implements OnInit {
 
   signout(){
     this.auth.logout().subscribe(logedOut => {
-      console.log(logedOut);
-      console.log("logedOut");
       this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    /*        if (allowed) {
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    } else {
-    console.log("Access Denied");
-    }*/
     },
     error => {
       console.log(error);
@@ -98,7 +91,17 @@ export class HomePage implements OnInit {
 
   openLink(){
     var url = "https://www.fatourati.ma/FatLite/ma/Radeema/formulaire?cid=01&fid=1010";
-    this.iab.create(url,"_system", "location=yes");
+
+    this.browserTab.isAvailable().then((isAvailable: boolean) => {
+      if(isAvailable) {
+        this.browserTab.openUrl(url);
+      } else {
+        // if custom tabs are not available you may  use InAppBrowser
+        console.log("custom not available");
+        let browser = new InAppBrowser;
+        browser.create(url,'_system');
+      }
+    });
   }
 
     // display Alert when user created or not

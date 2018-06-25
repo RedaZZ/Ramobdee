@@ -3,23 +3,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Demande Abonnement</ion-title>
+    <ion-title>{{"abonnement" | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-segment [(ngModel)]="steps">
     <ion-segment-button disabled="true" value="step1">
-      Etape 1
+      {{"etape1" | translate}}
     </ion-segment-button>
     <ion-segment-button disabled="true" value="step2">
-      Etape 2
+      {{"etape2" | translate}}
     </ion-segment-button>
     <ion-segment-button disabled="true" value="step3">
-      Etape 3
+      {{"etape3" | translate}}
     </ion-segment-button>
     <ion-segment-button disabled="true" value="step4">
-      Etape 4
+      {{"etape4" | translate}}
     </ion-segment-button>
   </ion-segment>
   <ion-slides >
@@ -28,18 +28,18 @@
         <ion-slide>
           <form #tourneForm="ngForm"  *ngIf="active" >
             <ion-item>
-              <ion-label floating>Tournée </ion-label>
-              <ion-input type="number" [(ngModel)]="abonnement.tourne" name="tourne" class="form-control" required #name="ngModel" ></ion-input>
+              <ion-label floating> {{"tourne" | translate}} </ion-label>
+              <ion-input type="number" [(ngModel)]="abonnement.tourne" name="tourne" class="form-control" required minlength="9" maxlength="9" #name="ngModel" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Service</ion-label>
+              <ion-label floating> {{"service" | translate}} </ion-label>
               <ion-select [(ngModel)]="abonnement.service" name="service" class="form-control" required #name="ngModel">
                 <ion-option value="EA" selected="selected">Eau</ion-option>
                 <ion-option value="BT">Electricité</ion-option>
                 <ion-option value="EA|BT">Eau & Electricité</ion-option>
               </ion-select>
             </ion-item>
-            <button ion-button type="button" class="btn-margin" block (click)="goForward(2)" [disabled]="!tourneForm.form.valid">Suivant</button>
+            <button ion-button type="button" class="btn-margin" block (click)="goForward(2)" [disabled]="!tourneForm.form.valid"> {{"suivant" | translate}} </button>
           </form>
         </ion-slide>
       </div>
@@ -47,38 +47,38 @@
         <ion-slide>
           <form #userForm="ngForm"  *ngIf="active" >
             <ion-item>
-              <ion-label floating>Nom </ion-label>
+              <ion-label floating> {{"nom" | translate}} </ion-label>
               <ion-input type="text" [(ngModel)]="abonnement.first_name" name="first_name" class="form-control" required #name="ngModel" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Prénom </ion-label>
+              <ion-label floating> {{"prenom" | translate}} </ion-label>
               <ion-input type="text" [(ngModel)]="abonnement.last_name" name="last_name" class="form-control" required #name="ngModel" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Type pièce d'identité</ion-label>
+              <ion-label floating> {{"id_type" | translate}} </ion-label>
               <ion-select [(ngModel)]="abonnement.identite" name="identite" class="form-control" required #name="ngModel">
                 <ion-option value="001" selected="selected">Cin</ion-option>
                 <ion-option value="002" >Passport</ion-option>
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-label floating>Numéro pièce </ion-label>
+              <ion-label floating> {{"num_id" | translate}} </ion-label>
               <ion-input type="text" [(ngModel)]="abonnement.number_id" name="number_id" class="form-control" required #name="ngModel" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Email </ion-label>
-              <ion-input type="email" [(ngModel)]="abonnement.email" name="email" class="form-control" required #name="ngModel" ></ion-input>
+              <ion-label floating> {{"email" | translate}} </ion-label>
+              <ion-input type="email" [(ngModel)]="abonnement.email" name="email" class="form-control" required #name="ngModel"  pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Tel </ion-label>
-              <ion-input type="tel" [(ngModel)]="abonnement.tel" name="tel" class="form-control" required #name="ngModel" ></ion-input>
+              <ion-label floating> {{"tel" | translate}} </ion-label>
+              <ion-input type="tel" [(ngModel)]="abonnement.tel" name="tel" class="form-control" required pattern="[0-9]*" minlength="10" maxlength="10" #name="ngModel" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Adresse </ion-label>
+              <ion-label floating> {{"adress" | translate}} </ion-label>
               <ion-textarea [(ngModel)]="abonnement.address" name="address" class="form-control" required #name="ngModel"></ion-textarea>
             </ion-item>
-            <button ion-button type="button" block class="btn-margin" (click)="getBack(1)">Précedent</button>
-            <button ion-button type="button" block class="" (click)="goForward(3)" [disabled]="!userForm.form.valid">Suivant</button>
+            <button ion-button type="button" block class="btn-margin" (click)="getBack(1)"> {{"precedent" | translate}} </button>
+            <button ion-button type="button" block class="" (click)="goForward(3)" [disabled]="!userForm.form.valid"> {{"suivant" | translate}} </button>
           </form>
         </ion-slide>
       </div>
@@ -87,7 +87,7 @@
           <form #usageForm="ngForm" *ngIf="active" >
             <div *ngIf="abonnement.service === 'BT'">
               <ion-item>
-                <ion-label floating>Usage Electricité</ion-label>
+                <ion-label floating> {{"usage_elec" | translate}} </ion-label>
                 <ion-select [(ngModel)]="abonnement.usage_elec" name="usage_elec" class="form-control" required #name="ngModel">
                   <ion-option value="122|115" selected="selected">BT DOMESTIQUE</ion-option>
                   <ion-option value="122|120">BT ECLAIRAGE</ion-option>
@@ -97,7 +97,7 @@
             </div>
             <div *ngIf="abonnement.service === 'EA'">
               <ion-item>
-                <ion-label floating>Usage Eau</ion-label>
+                <ion-label floating> {{"usage_eau" | translate}} </ion-label>
                 <ion-select [(ngModel)]="abonnement.usage_eau" name="usage_eau" class="form-control" required #name="ngModel">
                   <ion-option value="10|20" selected="selected">EAU DOMESTIQUE</ion-option>
                 </ion-select>
@@ -105,7 +105,7 @@
             </div>
             <div *ngIf="abonnement.service === 'EA|BT'">
               <ion-item>
-                <ion-label floating>Usage Electricité</ion-label>
+                <ion-label floating> {{"usage_elec" | translate}} </ion-label>
                 <ion-select [(ngModel)]="abonnement.usage_elec" name="usage_elec" class="form-control" required #name="ngModel">
                   <ion-option value="122|115" selected="selected">BT DOMESTIQUE</ion-option>
                   <ion-option value="122|120">BT ECLAIRAGE</ion-option>
@@ -113,7 +113,7 @@
                 </ion-select>
               </ion-item>
               <ion-item>
-                <ion-label floating>Usage Eau</ion-label>
+                <ion-label floating> {{"usage_eau" | translate}} </ion-label>
                 <ion-select [(ngModel)]="abonnement.usage_eau" name="usage_eau" class="form-control" required #name="ngModel">
                   <ion-option value="10|20" selected="selected">EAU DOMESTIQUE</ion-option>
                 </ion-select>
@@ -121,32 +121,32 @@
             </div>
             <ion-list radio-group [(ngModel)]="abonnement.abonne_type" name="abonne_type">
               <ion-list-header >
-                Je suis un ?
+                 {{"iam" | translate}}
               </ion-list-header>
               <ion-item>
-                <ion-label>Propriétaire</ion-label>
+                <ion-label> {{"proprietaire" | translate}} </ion-label>
                 <ion-radio value="proprietaire" checked></ion-radio>
               </ion-item>
               <ion-item>
-                <ion-label>Locataire</ion-label>
+                <ion-label> {{"locataire" | translate}} </ion-label>
                 <ion-radio value="locataire"></ion-radio>
               </ion-item>
             </ion-list>
             <ion-list radio-group [(ngModel)]="abonnement.abonne_state" name="abonne_state">
               <ion-list-header >
-                Je représente une ?
+                {{"jerepresente" | translate}}
               </ion-list-header>
               <ion-item>
-                <ion-label>Personne physique</ion-label>
+                <ion-label> {{"personne" | translate}} </ion-label>
                 <ion-radio value="personne" checked></ion-radio>
               </ion-item>
               <ion-item>
-                <ion-label>Société</ion-label>
+                <ion-label> {{"societe" | translate}} </ion-label>
                 <ion-radio value="societe"></ion-radio>
               </ion-item>
             </ion-list>
-            <button ion-button type="button" block class="btn-margin" (click)="getBack(2)">Précedent</button>
-            <button ion-button type="button" block class="" (click)="goForward(4)" [disabled]="!usageForm.form.valid">Suivant</button>
+            <button ion-button type="button" block class="btn-margin" (click)="getBack(2)"> {{"precedent" | translate}}</button>
+            <button ion-button type="button" block class="" (click)="goForward(4)" [disabled]="!usageForm.form.valid">{{"suivant" | translate}}</button>
           </form>
         </ion-slide>
       </div>
@@ -154,47 +154,47 @@
         <ion-slide>
           <ion-card>
             <ion-card-header>
-            Confirmation :
+             {{"confirmation" | translate}}
             </ion-card-header>
             <ion-card-content>
               <div class="one-line">
-                <div class="left-side">Tournée</div>
+                <div class="left-side"> {{"tourne" | translate}} </div>
                 <div class="right-side"> {{abonnement.tourne}} </div>
               </div>
               <div class="one-line">
-                <div class="left-side">Service</div>
+                <div class="left-side">{{"service" | translate}} </div>
                 <div class="right-side"> {{abonnement.service}} </div>
               </div>
             </ion-card-content>
           </ion-card>
           <ion-item>
             <div class="one-line">
-              <div class="left-side">Nom</div>
+              <div class="left-side"> {{"nom" | translate}} </div>
               <div class="right-side"> {{abonnement.first_name}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Prénom</div>
+              <div class="left-side"> {{"prenom" | translate}} </div>
               <div class="right-side"> {{abonnement.last_name}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Type Pièce</div>
+              <div class="left-side"> {{"id_type" | translate}} </div>
               <div class="right-side"> {{abonnement.identite}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Numéro pièce</div>
+              <div class="left-side"> {{"num_id" | translate}} </div>
               <div class="right-side"> {{abonnement.number_id}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Email</div>
+              <div class="left-side"> {{"email" | translate}} </div>
               <div class="right-side"> {{abonnement.email}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Tèl</div>
+              <div class="left-side"> {{"tel" | translate}} </div>
               <div class="right-side"> {{abonnement.tel}} </div>
             </div>
           </ion-item>
-          <button ion-button type="button" color="secondary" class="btn-margin" block (click)="sendForm()">Soumettre</button>
-          <button ion-button type="button" block class="btn-margin" (click)="getBack(3)">Précedent</button>
+          <button ion-button type="button" color="secondary" class="btn-margin" block (click)="sendForm()">{{"soumettre" | translate}}</button>
+          <button ion-button type="button" block class="btn-margin" (click)="getBack(3)"> {{"precedent" | translate}} </button>
         </ion-slide>
       </div>
     </div>

@@ -37,7 +37,9 @@ export class showDataPage{
   }
 
   ionViewDidLoad(){
-    this.loadMap();
+    if (this.kind === "Agence") {
+      this.loadMap();
+    }
   }
 
   loadMap(){

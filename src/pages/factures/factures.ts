@@ -14,14 +14,17 @@ export class Factures {
   listCta:any;
   defaultCta:any;
   isEmpty: boolean;
+  noCta: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private http: Http, public loadingCtrl: LoadingController) {
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
-    this.defaultCta=ctaArray[0];
-    this.isEmpty = true;
+    if (!ctaArray) {
+      this.noCta = true;
+    }
 
-    if (ctaArray.length > 0) {
+    if (ctaArray && ctaArray.length > 0) {
+      this.defaultCta=ctaArray[0];
       var array = [];
       ctaArray.forEach((cta, index) => {
         this.http.get('https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/'+cta).map((res:Response) => res.json())
@@ -54,12 +57,13 @@ export class Factures {
       this.factures = data;
       if (this.factures[0].ERR_COD !=="007") {
         this.isEmpty = false;
+      }else{
+        this.isEmpty = true;
       }
     });
   }
 
   changeFacture(e:any){
-    this.isEmpty = true;
     this.factures = this.getMesFactures(this.facture["objet"]);
   }
 

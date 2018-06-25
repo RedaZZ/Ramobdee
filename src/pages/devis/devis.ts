@@ -14,13 +14,16 @@ export class Devis {
   listCta: any;
   defaultCta: any;
   isEmpty: boolean;
+  noCta: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public loadingCtrl: LoadingController) {
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
-    this.defaultCta=ctaArray[0];
-    this.isEmpty = true;
+    if (!ctaArray) {
+      this.noCta = true;
+    }
 
-    if (ctaArray.length > 0) {
+    if (ctaArray && ctaArray.length > 0) {
+      this.defaultCta=ctaArray[0];
       var array = [];
 
       ctaArray.forEach((cta, index) => {
@@ -54,12 +57,13 @@ export class Devis {
       this.deviss = data;
       if (this.deviss[0].ERR_COD !=="007") {
         this.isEmpty = false;
+      }else{
+        this.isEmpty = true;
       }
     });
   }
 
   changeDevis(e:any){
-    this.isEmpty = true;
     this.deviss = this.getMesDevis(this.devis["objet"]);
   }
 

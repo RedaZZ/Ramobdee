@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{"Accueil"| translate}}</ion-title>
+    <ion-title>{{"home" | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -23,12 +23,12 @@
   <ion-list *ngIf=" first === '1'" class="choice">
     <button ion-item (click)=" choice = '1'; first = '0' ">
       <ion-icon name="card" item-left></ion-icon>
-        {{"Paiement Direct"| translate}}
+        {{"direct_pay" | translate}}
       <ion-icon name="arrow-dropright" item-right></ion-icon>
     </button>
     <button ion-item (click)=" choice = '2'; first = '0' ">
       <ion-icon name="person" item-left></ion-icon>
-        {{"Accès Client"| translate}}
+        {{"access_cli" | translate}}
       <ion-icon name="arrow-dropright" item-right></ion-icon>
     </button>
   </ion-list>
@@ -36,38 +36,38 @@
     <div  *ngIf=" choice === '1' ">
 
       <div class="text-center">
-        <button ion-button center text-center outline (click)=" first = '1'">{{"Accueil"| translate}}</button>
+        <button ion-button center text-center outline (click)=" first = '1'">{{"home" | translate}}</button>
       </div>
 
-      <button  ion-button text-center default block (click)="openLink()">{{"pay"| translate}}</button>
+      <button  ion-button text-center default block (click)="openLink()">{{"pay" | translate}}</button>
 
     </div>
     <div *ngIf=" choice==='2'">
       <div class="text-center">
-        <button ion-button center text-center outline (click)=" first = '1'">{{"Accueil"| translate}}</button>
+        <button ion-button center text-center outline (click)=" first = '1'">{{"home" | translate}}</button>
       </div>
       <div  *ngIf=" userName " class="card width100">
-        <p>Bienvenue {{userName}} </p> <br>
-        <button ion-button center text-center default block (click)=signout()>{{"signout"| translate}}</button>
+        <p> {{"welcome" | translate}} {{userName}} </p> <br>
+        <button ion-button center text-center default block (click)=signout()>{{"signout" | translate}}</button>
       </div>
       <div  *ngIf=" !userName">
-        <form (ngSubmit)="login()">
+        <form (ngSubmit)="login()" #loginForm="ngForm">
           <ion-list class="card width100">
             <ion-item>
-             <ion-input type="email" placeholder='{{"email"| translate}}' name="login" [(ngModel)]="user.login"></ion-input>
+             <ion-input type="email" placeholder='{{"email" | translate}}' name="login" [(ngModel)]="user.login"  pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" class="form-control" required></ion-input>
             </ion-item>
             <ion-item>
-             <ion-input type="password" placeholder='{{"password"| translate}}' name="password" [(ngModel)]="user.password"></ion-input>
+             <ion-input type="password" placeholder='{{"password" | translate}}' name="password" class="form-control" required [(ngModel)]="user.password"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>{{"Mémoriser"| translate}}</ion-label>
+              <ion-label>{{"memoriser" | translate}}</ion-label>
               <ion-checkbox color="dark" checked="true"></ion-checkbox>
             </ion-item>
           </ion-list>
 <!--           <div class="link-login" (click)="forgot()"><a>{{"Mot de passe oublié?"| translate}}</a></div> -->
-          <button ion-button center text-center default block type="submit">{{"valider"| translate}}</button>
+          <button ion-button center text-center default block type="submit" [disabled]="!loginForm.form.valid">{{"valider" | translate}}</button>
         </form>
-          <button ion-button center text-center default block (click)=goToRegister()>{{"Créer Compte"| translate}}</button>
+          <button ion-button center text-center default block (click)=goToRegister()>{{"creer_comp"| translate}}</button>
       </div>
     </div>
   </div>

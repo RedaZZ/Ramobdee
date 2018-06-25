@@ -14,14 +14,17 @@ export class Simulation {
   active = true;
   listCta:any;
   defaultCta:any;
+  noCta:boolean;
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,
               public navParams: NavParams, private http: Http) {
-
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
-    this.defaultCta=ctaArray[0];
+    if (!ctaArray) {
+      this.noCta = true;
+    }
 
-    if (ctaArray.length > 0) {
+    if (ctaArray && ctaArray.length > 0) {
+      this.defaultCta=ctaArray[0];
       var array = [];
       ctaArray.forEach((cta, index) => {
         this.http.get('https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/'+cta).map((res:Response) => res.json())

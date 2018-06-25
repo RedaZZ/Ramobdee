@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgModule} from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, LoadingController, AlertController } from 'ionic-angular';
 import { Http, Response } from '@angular/http';
 import { AuthService } from '../../providers/auth-service';
@@ -9,6 +9,8 @@ import { AuthService } from '../../providers/auth-service';
   selector: 'page-abonnement',
   templateUrl: 'abonnement.html',
 })
+
+
 export class Abonnement {
   @ViewChild(Slides) slides: Slides;
   abonnement = {};

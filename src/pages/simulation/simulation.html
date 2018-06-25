@@ -10,24 +10,33 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Simulation de mes factures</ion-title>
+    <ion-title>{{"simulation" | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-item class="top-item">
-    <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="simulation.cta" name="object" >
-      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
-    </ion-select>
-  </ion-item>
-  <form #simulForm="ngForm"  (ngSubmit)="simulate()"  *ngIf="active" >
-    <ion-item>
-      <ion-label floating>Volume</ion-label>
-      <ion-input type="number" [(ngModel)]="simulation.volume" name="volume" class="form-control" required #name="ngModel" ></ion-input>
+<div *ngIf='noCta'>
+    <ion-card>
+      <ion-card-content>
+        {{"no_cta_msg" | translate}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf='!noCta'>
+    <ion-item class="top-item">
+      <ion-label floating>Type Contrat</ion-label>
+      <ion-select [(ngModel)]="simulation.cta" name="object" >
+        <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
+      </ion-select>
     </ion-item>
-    <button ion-button type="submit" block class="btn-margin" [disabled]="!simulForm.form.valid">Simuler</button>
-  </form>
+    <form #simulForm="ngForm"  (ngSubmit)="simulate()"  *ngIf="active" >
+      <ion-item>
+        <ion-label floating>Volume</ion-label>
+        <ion-input type="number" [(ngModel)]="simulation.volume" name="volume" class="form-control" required #name="ngModel" ></ion-input>
+      </ion-item>
+      <button ion-button type="submit" block class="btn-margin" [disabled]="!simulForm.form.valid">Simuler</button>
+    </form>
+  </div>
 </ion-content>

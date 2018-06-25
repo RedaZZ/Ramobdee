@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { Reclamations } from './reclamations';
+import { TranslateModule }   from '../../app/translate/translate.module';
 
 @NgModule({
   declarations: [
@@ -8,9 +9,12 @@ import { Reclamations } from './reclamations';
   ],
   imports: [
     IonicPageModule.forChild(Reclamations),
+    TranslateModule
   ],
   exports: [
     Reclamations
   ]
 })
 export class ReclamationsModule {}
+
+

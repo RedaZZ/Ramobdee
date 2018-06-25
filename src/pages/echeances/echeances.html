@@ -4,42 +4,51 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Échéances</ion-title>
+    <ion-title>{{"echeances" | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-item class="top-item">
-    <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="echeance.objet" name="object" (ionChange)="changeEcheance($event)" >
-      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
-    </ion-select>
-  </ion-item>
-    <div *ngIf="isEmpty">
+  <div *ngIf='noCta'>
     <ion-card>
       <ion-card-content>
-        Pas de echeances pour ce contrat.
+        {{"no_cta_msg" | translate}}
       </ion-card-content>
     </ion-card>
   </div>
-  <div *ngIf="!isEmpty">
-  <button ion-item text-wrap *ngFor=" let echeance of echeances" (click)="showEcheance(echeance)">
-    <ion-label>
-      <div class="one-line">
-        <div class="left-side">N° Facilité</div>
-        <div class="right-side"> {{echeance.NUM_FPA}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Etat Facilité</div>
-        <div class="right-side"> {{echeance.ETA_FPA}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Montant facilité</div>
-        <div class="right-side"> {{echeance.MNT_FPA}} </div>
-      </div>
-    </ion-label>
-  </button>
+  <div *ngIf='!noCta'>
+    <ion-item class="top-item">
+      <ion-label floating>{{"cta_type" | translate}}</ion-label>
+      <ion-select [(ngModel)]="echeance.objet" name="object" (ionChange)="changeEcheance($event)" >
+        <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
+      </ion-select>
+    </ion-item>
+      <div *ngIf="isEmpty">
+      <ion-card>
+        <ion-card-content>
+          {{"no_result" | translate}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="!isEmpty">
+    <button ion-item text-wrap *ngFor=" let echeance of echeances" (click)="showEcheance(echeance)">
+      <ion-label>
+        <div class="one-line">
+          <div class="left-side"> {{"num_faci" | translate}} </div>
+          <div class="right-side"> {{echeance.NUM_FPA}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side"> {{"etat_faci" | translate}} </div>
+          <div class="right-side"> {{echeance.ETA_FPA}} </div>
+        </div>
+        <div class="one-line">
+          <div class="left-side"> {{"mnt_faci" | translate}} </div>
+          <div class="right-side"> {{echeance.MNT_FPA}} </div>
+        </div>
+      </ion-label>
+    </button>
+    </div>
   </div>
 </ion-content>

@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{"MesContrats" | translate}}</ion-title>
+    <ion-title>{{"mesContrats" | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,32 +11,32 @@
   <div padding>
     <ion-segment [(ngModel)]="client">
       <ion-segment-button value="contrats">
-         {{"Mes contrats"| translate}}
+         {{"mesContrats"| translate}}
       </ion-segment-button>
       <ion-segment-button value="recap">
-         {{"Mon compte client"| translate}}
+         {{"mon_compte"| translate}}
       </ion-segment-button>
     </ion-segment>
   </div>
 
-  <div [ngSwitch]="client">
+  <div [ngSwitch]="client" *ngIf='!noCta'>
     <ion-list *ngSwitchCase="'contrats'">
       <ion-item text-wrap *ngFor=" let contrat of contrats">
         <ion-label>
           <div class="one-line">
-            <div class="left-side">N° Contrat</div>
+            <div class="left-side"> {{"num_cta" | translate}} </div>
             <div class="right-side"> {{contrat["num_ct"]}} </div>
           </div>
           <div class="one-line">
-            <div class="left-side">Service</div>
+            <div class="left-side"> {{"service" | translate}} </div>
             <div class="right-side"> {{contrat["type"]}} </div>
           </div>
           <div class="one-line">
-            <div class="left-side">N° Client</div>
+            <div class="left-side"> {{"num_client" | translate}} </div>
             <div class="right-side"> {{contrat["num_client"]}} </div>
           </div>
           <div class="one-line">
-            <div class="left-side">Client</div>
+            <div class="left-side"> {{"nom_client" | translate}} </div>
             <div class="right-side"> {{contrat["nom_client"]}} </div>
           </div>
         </ion-label>
@@ -44,7 +44,7 @@
     </ion-list>
     <ion-list *ngSwitchCase="'recap'">
       <ion-item class="top-item">
-        <ion-label floating>Type Contrat</ion-label>
+        <ion-label floating>{{"cta_type" | translate}}</ion-label>
         <ion-select [(ngModel)]="compte.objet" name="object" (ionChange)="changeRecap($event)" >
           <ion-option  *ngFor=" let cta of contrats; let i=index " [value]="cta.num_ct" [selected]="cta.num_ct == this.defaultCta">{{cta.num_ct}}-{{cta.type}}</ion-option>
         </ion-select>
@@ -53,24 +53,31 @@
       <ion-item text-wrap >
           <ion-label>
             <div class="one-line">
-              <div class="left-side">Montant impayés</div>
+              <div class="left-side"> {{"impayes" | translate}} </div>
               <div class="right-side"> {{recap_compte.impayes}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Montant exigible</div>
+              <div class="left-side"> {{"mt_exigible" | translate}} </div>
               <div class="right-side"> {{recap_compte.mt_exigible}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Crédit sur mon compte</div>
+              <div class="left-side"> {{"credit" | translate}} </div>
               <div class="right-side"> {{recap_compte.credit}} </div>
             </div>
             <div class="one-line">
-              <div class="left-side">Provision</div>
+              <div class="left-side"> {{"provision" | translate}} </div>
               <div class="right-side"> {{recap_compte.provision}} </div>
             </div>
           </ion-label>
       </ion-item>
       </div>
     </ion-list>
+  </div>
+  <div *ngIf='noCta'>
+    <ion-card>
+      <ion-card-content>
+        {{"no_cta_msg" | translate}}
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

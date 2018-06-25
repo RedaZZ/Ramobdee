@@ -14,3 +14,4 @@ export class TranslatePipe implements PipeTransform {
         return this._translate.instant(value);
     }
 }
+

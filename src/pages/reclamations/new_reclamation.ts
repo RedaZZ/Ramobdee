@@ -40,6 +40,7 @@ export class FormPage {
     var cod_fam_int = this.reclamation['type'].split('|')[0];
     var cod_ori_int = this.reclamation['services'];
     var cmt = this.reclamation['comment'];
+    var tel = this.reclamation['tel'];
     var user = JSON.parse(this.auth.getUserInfo()) ;
     var id_usr = user["id"];
 
@@ -49,12 +50,24 @@ export class FormPage {
       content: 'Merci de patienter...'
     });
 
+    loading.present();
     this.http.get(url).map((res:Response) => res.json())
     .subscribe(data => {
       console.log(data);
-      loading.dismiss();
-      this.closeModal();
+      var state = data.split("|")[0];
+      var num = data.split("|")[1];
+      var sms_msg = "Nous accusons récéption de votre réclamation N°: "+num+" Centre de Relation Client RADEEMA, Pour plus d'informations contactez le 080 2000 123";
+      var urlsms = "https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/envoyer-sms/tel/"+tel+"/msg/"+sms_msg;
+      if (state === "1") {
+        this.http.get(urlsms).map((res:Response) => res.json())
+        .subscribe(data => {
+          console.log("SMS: "+ data);
+          loading.dismiss();
+          this.closeModal();
+        });
+      }
     });
+
 
   }
 

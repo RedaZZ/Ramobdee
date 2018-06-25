@@ -4,7 +4,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Détails facture</ion-title>
+    <ion-title> {{"detail_fact" | translate}} </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,46 +13,46 @@
 <ion-content padding>
   <ion-item text-wrap>
     <div class="one-line">
-      <div class="left-side">Numéro</div>
+      <div class="left-side">{{"no_facture" | translate}} : </div>
       <div class="right-side"> {{number}} </div>
     </div>
     <div class="one-line">
-      <div class="left-side">Période</div>
+      <div class="left-side">{{"type_facture" | translate}} : </div>
+      <div class="right-side"> {{typeFacture}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">{{"period" | translate}} : </div>
       <div class="right-side"> {{period}} </div>
     </div>
     <div class="one-line">
-      <div class="left-side">Montant</div>
+      <div class="left-side">{{"montant" | translate}} : </div>
       <div class="right-side"> {{amount}} </div>
     </div>
     <div class="one-line">
-      <div class="left-side">Date d'exigibilité</div>
+      <div class="left-side">{{"solde" | translate}} : </div>
+      <div class="right-side"> {{solde}} </div>
+    </div>
+    <div class="one-line">
+      <div class="left-side">{{"exigibilite" | translate}} : </div>
       <div class="right-side"> {{dueDate}} </div>
     </div>
   </ion-item>
   <div *ngFor=" let ecr of listEcr; let i=index " >
     <div class="details-section">
       <div class="one-line">
-        <div class="left-side">Type de facture</div>
-        <div class="right-side"> {{typeFacture}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Solde</div>
-        <div class="right-side"> {{solde}} </div>
-      </div>
-      <div class="one-line">
-        <div class="left-side">Montant réglé</div>
+        <div class="left-side">{{"montant_reg" | translate}} : </div>
         <div class="right-side"> {{ecr.MNT_REG}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Type réglement</div>
+        <div class="left-side">{{"type_reg" | translate}} : </div>
         <div class="right-side"> {{ecr.TYP_ECR}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Mode de réglement</div>
+        <div class="left-side">{{"mode_reg" | translate}} : </div>
         <div class="right-side"> {{ecr.MOD_REG}} </div>
       </div>
       <div class="one-line">
-        <div class="left-side">Date de réglement</div>
+        <div class="left-side">{{"date_reg" | translate}} : </div>
         <div class="right-side"> {{ecr.DAT_ECR}} </div>
       </div>
     </div>

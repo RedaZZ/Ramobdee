@@ -4,18 +4,18 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{"params"| translate}}</ion-title>
+    <ion-title> {{"params" | translate}} </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <form #settingsForm="ngForm"  *ngIf="active" (ngSubmit)="changeLang()">
     <ion-item>
-      <ion-label floating>{{"Langue"| translate}}</ion-label>
+      <ion-label floating> {{"langue" | translate}} </ion-label>
       <ion-select [(ngModel)]="language" name="lang" (ionChange)="onChange($event)">
         <ion-option [value]="lang.value" *ngFor="let lang of supportedLanguages" > {{lang.display}} </ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button type="submit" block [disabled]="!settingsForm.form.valid">{{"Sauvegarder" | translate}}</button>
+    <button ion-button type="submit" block [disabled]="!settingsForm.form.valid"> {{"sauvegarder" | translate}} </button>
   </form>
 </ion-content>

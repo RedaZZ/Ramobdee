@@ -1,21 +1,21 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>{{menu}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
       <button [class.activePageHighlight]="checkActive(p)" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title| translate}}
+        {{p.title}}
       </button>
     </ion-list>
-    <div class="menu-title">Espace Client</div>
+    <div class="menu-title"> {{espace_cli}}</div>
     <ion-list >
       <span  *ngFor="let p of pages2" (click)="openPage(p)" >
       <button [class.activePageHighlight]="checkActive(p)" *ngIf="p.title != 'Inscription' || !currentUser() && p.title == 'Inscription'"  menuClose ion-item>
-        {{p.title| translate}}
+        {{p.title}}
       </button>
       </span>
     </ion-list>

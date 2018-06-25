@@ -15,14 +15,20 @@ export class MesContrats {
   defaultCta:any;
   recap_compte:any;
   isEmpty:boolean;
+  noCta: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService,
               private http: Http, public loadingCtrl: LoadingController) {
 
     this.client = "contrats";
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
-    this.defaultCta=ctaArray[0];
-    if (ctaArray.length > 0) {
+    //check if user have a contract
+    if (!ctaArray) {
+      this.noCta = true;
+    }
+
+    if (ctaArray && ctaArray.length > 0) {
+      this.defaultCta=ctaArray[0];
       var array = [];
       ctaArray.forEach((cta, index) => {
         this.http.get('https://www.radeema.ma/api/jsonws/WsForMob-portlet.wsmob/getCtaDetail/num_cta/'+cta).map((res:Response) => res.json())
@@ -43,6 +49,7 @@ export class MesContrats {
 
 
   getRecapCompte(ctaNum) {
+
     let loading = this.loadingCtrl.create({
       content: 'Merci de patienter...'
     });

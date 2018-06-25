@@ -1,55 +1,60 @@
-
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Reclamations</ion-title>
+    <ion-title>{{"reclamations" | translate}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-  <ion-item class="top-item">
-    <ion-label floating>Type Contrat</ion-label>
-    <ion-select [(ngModel)]="reclamation.objet" name="object" (ionChange)="changeReclamation($event)" >
-      <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
-    </ion-select>
-  </ion-item>
-  <button ion-button type="button" block (click)="openModal()" class="btn-margin">Soumettre réclamation</button>
-  <div *ngIf="isEmpty">
+  <div *ngIf='noCta'>
     <ion-card>
       <ion-card-content>
-        Pas de Reclamations pour ce contrat.
+        {{"no_cta_msg" | translate}}
       </ion-card-content>
     </ion-card>
   </div>
-  <div *ngIf="!isEmpty">
-    <ion-item text-wrap *ngFor=" let reclamation of reclamations">
-      <ion-label>
-        <div class="one-line">
-          <div class="left-side">N° Réclamation</div>
-          <div class="right-side"> {{reclamation.ID_INT}} </div>
-        </div>
-        <div class="one-line">
-          <div class="left-side">Date Réclamation</div>
-          <div class="right-side"> {{reclamation.DAT_LAN_INT}}</div>
-        </div>
-        <div class="one-line">
-          <div class="left-side">Etat Réclamation</div>
-          <div class="right-side"> {{reclamation.ETA_INT}} </div>
-        </div>
-        <div class="one-line">
-          <div class="left-side">Type Réclamation</div>
-          <div class="right-side"> {{reclamation.LIB_TYP_WEB}} </div>
-        </div>
-        <div class="one-line">
-          <div class="left-side">Commentaire</div>
-          <div class="right-side"> {{reclamation.CMT_LAN_INT}} </div>
-        </div>
-      </ion-label>
+  <div *ngIf='!noCta'>
+    <ion-item class="top-item">
+      <ion-label floating>{{"cta_type" | translate}}</ion-label>
+      <ion-select [(ngModel)]="reclamation.objet" name="object" (ionChange)="changeReclamation($event)" >
+        <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
+      </ion-select>
     </ion-item>
+    <button ion-button type="button" block (click)="openModal()" class="btn-margin">{{"add_recl" | translate}}</button>
+    <div *ngIf="isEmpty">
+      <ion-card>
+        <ion-card-content>
+          {{"no_result" | translate}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="!isEmpty">
+      <ion-item text-wrap *ngFor=" let reclamation of reclamations">
+        <ion-label>
+          <div class="one-line">
+            <div class="left-side"> {{"no_recl" | translate}} </div>
+            <div class="right-side"> {{reclamation.ID_INT}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side"> {{"date_recl" | translate}} </div>
+            <div class="right-side"> {{reclamation.DAT_LAN_INT}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side"> {{"etat_recl" | translate}} </div>
+            <div class="right-side"> {{reclamation.ETA_INT}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side"> {{"type_recl" | translate}} </div>
+            <div class="right-side"> {{reclamation.LIB_TYP_WEB}} </div>
+          </div>
+          <div class="one-line">
+            <div class="left-side"> {{"commentaire" | translate}} </div>
+            <div class="right-side"> {{reclamation.CMT_LAN_INT}} </div>
+          </div>
+        </ion-label>
+      </ion-item>
+    </div>
   </div>
 </ion-content>
