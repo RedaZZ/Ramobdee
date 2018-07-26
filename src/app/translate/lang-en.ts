@@ -3,7 +3,7 @@ export const LANG_EN_NAME = "en";
 export const LANG_EN_TRANS = {
   "menu":"Menu",
   "espace_cli":"Customer Area",
-  "cta_type":"Contract type",
+  "cta_type":"Choose contract",
   "sauvegarder": "Save",
   "langue":"Language",
   "direct_pay":"Direct Payment",
@@ -159,4 +159,9 @@ export const LANG_EN_TRANS = {
   "mt_exigible":"Due amount",
   "credit":"Credit on my account",
   "provision":"Provision",
+  "obligatoire_field":"fields marked with an * are required",
+  "volume":"Volume",
+  "simuler":"Simulate",
+  "call_number":"Please call 080 2000 123",
+  "titre_ctc":" Or via the form: ",
 };

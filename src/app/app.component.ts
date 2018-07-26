@@ -172,10 +172,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.manageMenu();
+   /*   this.manageMenu();*/
 
       // if no internet show alert
-      let disconnectSub = this.network.onDisconnect().subscribe(() => {
+      this.network.onDisconnect().subscribe(() => {
         let alert = this.alertCtrl.create({
           title: 'Connexion internet',
           subTitle: "Pas de connexion Internet",
@@ -227,7 +227,7 @@ export class MyApp {
     confirm.present();
   }
 
-  manageMenu(){
+/*  manageMenu(){
     var $title = $(".menu-title");
     var $menu = $("#list-connect");
     $title.click(function() {
@@ -239,6 +239,6 @@ export class MyApp {
         $menu.addClass("hidden");
       }
     });
-  }
+  }*/
 
 }

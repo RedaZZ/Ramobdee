@@ -1,23 +1,15 @@
-<!--
-  Generated template for the Simulation page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{"simulation" | translate}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-<div *ngIf='noCta'>
+  <div *ngIf='noCta'>
     <ion-card>
       <ion-card-content>
         {{"no_cta_msg" | translate}}
@@ -26,17 +18,17 @@
   </div>
   <div *ngIf='!noCta'>
     <ion-item class="top-item">
-      <ion-label floating>Type Contrat</ion-label>
+      <ion-label floating>{{"cta_type" | translate}}</ion-label>
       <ion-select [(ngModel)]="simulation.cta" name="object" >
-        <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta">{{cta.num}}-{{cta.type}}</ion-option>
+        <ion-option  *ngFor=" let cta of listCta; let i=index " [value]="cta.num" [selected]="cta.num == this.defaultCta" (ionSelect)="ctaChange(cta)"> {{cta.num}}-{{cta.type}} </ion-option>
       </ion-select>
     </ion-item>
     <form #simulForm="ngForm"  (ngSubmit)="simulate()"  *ngIf="active" >
       <ion-item>
-        <ion-label floating>Volume</ion-label>
+        <ion-label floating>{{"volume" | translate}} {{metric}}</ion-label>
         <ion-input type="number" [(ngModel)]="simulation.volume" name="volume" class="form-control" required #name="ngModel" ></ion-input>
       </ion-item>
-      <button ion-button type="submit" block class="btn-margin" [disabled]="!simulForm.form.valid">Simuler</button>
+      <button ion-button type="submit" block class="btn-margin" [disabled]="!simulForm.form.valid">{{"simuler" | translate}}</button>
     </form>
   </div>
 </ion-content>

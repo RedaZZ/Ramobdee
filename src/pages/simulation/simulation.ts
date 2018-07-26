@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
 import { resultsPage} from '../simulation/resultats';
 import { Http, Response } from '@angular/http';
 
@@ -15,9 +15,11 @@ export class Simulation {
   listCta:any;
   defaultCta:any;
   noCta:boolean;
+  metric = "";
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,
-              public navParams: NavParams, private http: Http) {
+              private alertCtrl: AlertController,public navParams: NavParams,
+              private http: Http) {
     var ctaArray = JSON.parse(window.localStorage.getItem('listCta'));
     if (!ctaArray) {
       this.noCta = true;
@@ -57,12 +59,36 @@ export class Simulation {
 /*      var code = data.split("|")[0];
       var message = data.split("|")[1]*/
       loading.dismiss();
-      this.navCtrl.push(resultsPage, {
-      });
+      if (data.length == 0) {
+        // there is no response
+        this.presentAlert("Une erreur est survenue, merci de réessayer ultérieurement");
+      } else {
+        this.navCtrl.push(resultsPage, {
+        });
+      }
 
     });
 
   }
+
+  presentAlert(content:any) {
+    let alert = this.alertCtrl.create({
+      title: 'Erreur',
+      subTitle: content,
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+
+
+  ctaChange(e:any) {
+    if (e.type === "BASSE TENSION") {
+      this.metric = "(Kwh)";
+    } else {
+      this.metric = "(m3)";
+    }
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Simulation');

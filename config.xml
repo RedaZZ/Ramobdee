@@ -13,11 +13,6 @@
     <allow-navigation href="https://*youtube.com/*" />
     <preference name="AllowInlineMediaPlayback" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
-    <allow-intent href="*" />
-    <allow-intent href="geo:*" />
-    <allow-intent href="http://*/*" launch-external="yes" />
-    <allow-intent href="https://*/*" launch-external="yes" />
-    <allow-intent href="tel:*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -28,6 +23,11 @@
     <preference name="loadUrlTimeoutValue" value="60000" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashScreenDelay" value="3000" />
+    <allow-intent href="*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="http://*/*" launch-external="yes" />
+    <allow-intent href="https://*/*" launch-external="yes" />
+    <allow-intent href="tel:*" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>

@@ -18,20 +18,21 @@
     </ion-card-content>
   </ion-card>
   <div padding>
-    <button ion-button full large color="light" (click)="callIt('0802000123')" >Appelez le 080 2000 123</button>
+    <button ion-button full large color="light" class="appel" (click)="callIt('0802000123')" >{{"call_number" | translate}}</button>
   </div>
+  <button class="titre">{{"titre_ctc" | translate}}</button>
   <form #contactForm="ngForm" (ngSubmit)="contactMe()">
     <ion-item>
-      <ion-label floating> {{'nom_prenom'| translate}} </ion-label>
+      <ion-label floating> {{'nom_prenom'| translate}} * </ion-label>
       <ion-input type="text" [(ngModel)]="contact.complete_name" name="complete_name" class="form-control" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating> {{'email'| translate}} </ion-label>
+      <ion-label floating> {{'email'| translate}} * </ion-label>
       <ion-input type="email" [(ngModel)]="contact.email" name="email" class="form-control"  pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label floating> {{'object'| translate}} </ion-label>
+      <ion-label floating> {{'object'| translate}} * </ion-label>
       <ion-select [(ngModel)]="contact.object" name="object" class="form-control" required>
         <ion-option value="DEMANDE D'INFORMATIONS">Demande d'informations</ion-option>
         <ion-option value="RECLAMATION">Réclamation</ion-option>
@@ -51,9 +52,14 @@
       </ion-select>
     </ion-item> -->
     <ion-item>
-      <ion-label floating> {{'details'| translate}} </ion-label>
+      <ion-label floating> {{'details'| translate}} * </ion-label>
       <ion-textarea [(ngModel)]="contact.details" name="details" class="form-control" required></ion-textarea>
     </ion-item>
+    <ion-card>
+      <ion-card-content>
+       {{"obligatoire_field" | translate}}
+      </ion-card-content>
+    </ion-card>
     <button ion-button type="submit" block [disabled]="!contactForm.form.valid"> {{'envoyer'| translate}} </button>
   </form>
 </ion-content>

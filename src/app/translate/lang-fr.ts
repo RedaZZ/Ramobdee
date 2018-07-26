@@ -3,7 +3,7 @@ export const LANG_FR_NAME = "fr";
 export const LANG_FR_TRANS = {
   "menu":"Menu",
   "espace_cli":"Espace Client",
-  "cta_type":"Type contrat",
+  "cta_type":"Choisir contrat",
   "sauvegarder": "Sauvegarder",
   "langue":"Langue",
   "direct_pay":"Paiement Direct",
@@ -159,4 +159,9 @@ export const LANG_FR_TRANS = {
   "mt_exigible":"Montant exigible",
   "credit":"Crédit sur mon compte",
   "provision":"Provision",
+  "obligatoire_field":"les champs marqués avec une * sont obligatoires",
+  "volume":"Volume",
+  "simuler":"Simuler",
+  "call_number":"Appelez le 080 2000 123",
+  "titre_ctc":"Ou via le formulaire : ",
 };

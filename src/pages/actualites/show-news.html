@@ -8,7 +8,8 @@
 </ion-header>
 <ion-content>
   <ion-card>
-    <img src="{{publicUrl}}"/>
+    <img *ngIf="publicUrl!=null" src="{{publicUrl}}">
+    <img *ngIf="publicUrl==null" src="/assets/images/no-image.svg">
     <ion-card-content>
       <ion-card-title>
         {{createdAt  | date: 'dd/MM/yyyy h:mm'}}

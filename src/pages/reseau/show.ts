@@ -10,6 +10,7 @@ declare var google;
 })
 
 export class showDataPage{
+  @ViewChild('directionsPanel') directionsPanel: ElementRef;
   public name;
   public adress;
   public tel;
@@ -28,7 +29,7 @@ export class showDataPage{
     this.kind = navParams.get("kind");
     this.lat = navParams.get("lat");
     this.lng = navParams.get("lng");
-/*    this.externalLink = navParams.get("externalLink");*/
+
   }
 
   goBack() {
@@ -56,7 +57,7 @@ export class showDataPage{
     directionsDisplay.setMap(this.map);
 
     var infowindow = new google.maps.InfoWindow({
-      content: "click here"
+      content: this.adress
     });
 
     var marker = new google.maps.Marker({
@@ -72,7 +73,7 @@ export class showDataPage{
 
   addMarker(){
     var options = {
-      maximumAge: 3000, timeout: 5000, enableHighAccuracy: true
+      /*maximumAge: 3000, timeout: 5000,*/ enableHighAccuracy: false
     };
     let directionsService = new google.maps.DirectionsService();
 
@@ -107,6 +108,65 @@ export class showDataPage{
     }, (err) => {
       console.log(err);
     });
+  }
+
+ startNavigating(){
+
+      let directionsService = new google.maps.DirectionsService;
+      let directionsDisplay = new google.maps.DirectionsRenderer;
+      var options = {
+        maximumAge: 3000, timeout: 5000, enableHighAccuracy: true
+      };
+      this.geolocation.watchPosition(options).subscribe((position) => {
+        directionsDisplay.setMap(this.map);
+        directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+
+        directionsService.route({
+            origin: {lat: Number(this.lat), lng: Number(this.lng)},
+            destination: {lat: Number(position.coords.latitude), lng: Number(position.coords.longitude)},
+            travelMode: google.maps.TravelMode['DRIVING']
+        }, (res, status) => {
+
+            if(status == google.maps.DirectionsStatus.OK){
+                directionsDisplay.setDirections(res);
+            } else {
+                console.warn(status);
+            }
+
+        });
+        }, (err) => {
+        console.log(err);
+      });
+
+
+/*    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let latLng = new google.maps.LatLng(this.lat, this.lng);
+        let mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        directionsDisplay.setMap(this.map);
+        directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+
+        directionsService.route({
+            origin: {lat: Number(this.lat), lng: Number(this.lng)},
+            destination: {lat: Number(position.coords.latitude), lng: Number(position.coords.longitude)},
+            travelMode: google.maps.TravelMode['DRIVING']
+        }, (res, status) => {
+          if(status == google.maps.DirectionsStatus.OK){
+            directionsDisplay.setDirections(res);
+          } else {
+            console.warn(status);
+          }
+        });
+      }, Error => {
+        console.log(Error);
+      })
+    }*/
   }
 }
 

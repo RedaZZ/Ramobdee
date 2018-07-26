@@ -32,7 +32,7 @@
           <form #authForm="ngForm"  *ngIf="active" >
 
             <ion-item>
-              <ion-label floating>{{"titre"| translate}}</ion-label>
+              <ion-label floating>{{"titre"| translate}} * </ion-label>
               <ion-select [(ngModel)]="user.titre" name="titre"
               class="form-control" required #name="ngModel">
                 <ion-option value="MR" selected="selected">{{"mr"| translate}}</ion-option>
@@ -42,26 +42,30 @@
             </ion-item>
 
             <ion-item>
-              <ion-label floating>{{"nom"| translate}}</ion-label>
+              <ion-label floating>{{"nom"| translate}} * </ion-label>
               <ion-input type="text" [(ngModel)]="user.name" name="name"
               class="form-control" required #name="ngModel" >
               </ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>{{"prenom"| translate}}</ion-label>
+              <ion-label floating>{{"prenom"| translate}} * </ion-label>
               <ion-input type="text" [(ngModel)]="user.prenom" name="prenom"
               class="form-control" required #name="ngModel" >
               </ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>{{"identifiant"| translate}} </ion-label>
+              <ion-label floating>{{"identifiant"| translate}} * </ion-label>
               <ion-input type="text" [(ngModel)]="user.piece_identite"
               name="piece_identite" class="form-control" required #name="ngModel">
               </ion-input>
             </ion-item>
-
+            <ion-card>
+              <ion-card-content>
+              * : {{"obligatoire" | translate}}
+              </ion-card-content>
+            </ion-card>
             <button ion-button type="button" class="btn-margin" block
             (click)="goForward(2)" [disabled]="!authForm.form.valid">{{"suivant"| translate}}
             </button>
@@ -76,21 +80,21 @@
           <form #authForm2="ngForm"  *ngIf="active" >
 
             <ion-item>
-              <ion-label floating>{{"email"| translate}} </ion-label>
+              <ion-label floating>{{"email"| translate}} * </ion-label>
               <ion-input type="email" [(ngModel)]="user.email" name="email"
               class="form-control" required #name="ngModel"  pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
               </ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>{{"password"| translate}} </ion-label>
+              <ion-label floating>{{"password"| translate}} * </ion-label>
               <ion-input type="password" [(ngModel)]="user.mot_de_passe"
               name="mot_de_passe" class="form-control" required #name="ngModel" >
               </ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>{{"tel"| translate}} </ion-label>
+              <ion-label floating>{{"tel"| translate}} * </ion-label>
               <ion-input type="tel" [(ngModel)]="user.telephone" name="telephone"
               class="form-control" required #name="ngModel" >
 
@@ -98,13 +102,17 @@
             </ion-item>
 
             <ion-item class="btn-margin">
-              <ion-label>{{"conditions"| translate}}</ion-label>
+              <ion-label>{{"conditions"| translate}} </ion-label>
               <ion-checkbox color="dark" checked="false" [(ngModel)]="user.accept"
                 name="accept" class="form-control" (ionChange)="openModal($event)"
                 required #name="ngModel">
               </ion-checkbox>
             </ion-item>
-
+            <ion-card>
+              <ion-card-content>
+              * : {{"obligatoire" | translate}}
+              </ion-card-content>
+            </ion-card>
             <button ion-button type="button" class="btn-margin" block
             (click)="register()" [disabled]="!authForm2.form.valid">{{"valider"| translate}}
             </button>

@@ -158,4 +158,8 @@ export const LANG_AR_TRANS = {
   "mt_exigible":"المبلغ المستحق",
   "credit":"الائتمان على حسابي",
   "provision":"التوفير",
+  "volume":"الحجم",
+  "simuler":"محاكاة",
+  "call_number":"يرجى الاتصال ب: 080 2000 123",
+  "titre_ctc":" أو عبر النموذج: ",
 };

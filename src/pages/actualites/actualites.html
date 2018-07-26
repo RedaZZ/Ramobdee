@@ -21,9 +21,10 @@
 
   <div [ngSwitch]="actu">
     <ion-list *ngSwitchCase="'news'">
-      <button ion-item *ngFor=" let post of posts['data'] " (click)="showNews(post)">
+      <button ion-item *ngFor=" let post of posts " (click)="showNews(post)">
         <ion-thumbnail item-left>
-          <img src="{{post.full_picture}}">
+          <img *ngIf="post.full_picture!=null" src="{{post.full_picture}}">
+          <img *ngIf="post.full_picture==null" src="assets/images/no-image.svg">
         </ion-thumbnail>
         <h3>{{post.created_time  | date: 'dd/MM/yyyy h:mm'}}</h3>
         <h2>{{post.message}}</h2>
@@ -31,7 +32,7 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'videos'">
-      <button ion-item *ngFor=" let video of videos['items'] " (click)="showVideos(video)">
+      <button ion-item *ngFor=" let video of videos " (click)="showVideos(video)">
         <ion-thumbnail item-left>
           <img src="{{video.snippet.thumbnails.default.url}}">
 

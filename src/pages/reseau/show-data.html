@@ -13,8 +13,11 @@
       <div #map id="map"></div>
     </div>
     <ion-card>
+      <ion-card-content>
+          <div #directionsPanel></div>
+      </ion-card-content>
       <ion-fab right top>
-        <button ion-fab (click)="addMarker()">
+        <button ion-fab (click)="startNavigating()">
           <ion-icon name="pin"></ion-icon>
         </button>
       </ion-fab>

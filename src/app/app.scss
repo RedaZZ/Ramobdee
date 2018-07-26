@@ -1,3 +1,5 @@
+//green color #81a327
+
 .alert-radio-label{
   white-space: normal !important;
 }
@@ -19,14 +21,14 @@
   color:#F4AF13;
 }
 .toolbar-background, .button-default{
-  background-color: #81a327 ;
+  background-color: #0077bc  !important;
 }
 .button-outline{
-  border-color: #81a327 ;
-  color: #81a327 ;
+  border-color: #0077bc  !important;
+  color: #0077bc  !important;
 }
 .button-outline.activated{
-  background-color: #81a327 ;
+  background-color: #0077bc  !important;
   color: #fff ;
 }
 .toolbar-title{
@@ -52,7 +54,7 @@
   font-weight: bold;
   width: 100%;
   text-align: center;
-  background-color: #81a327;
+  background-color: #0077bc  !important;
   cursor:pointer;
   color: #fff ;
 }

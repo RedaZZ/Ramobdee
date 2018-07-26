@@ -39,7 +39,7 @@ export class Settings {
     this.supportedLanguages = [
       { display: 'English', value: 'en' },
       { display: 'Français', value: 'fr' },
-      { display: 'العربية', value: 'ar' },
+/*      { display: 'العربية', value: 'ar' },*/
     ];
 
     // set current langage
